@@ -2,11 +2,12 @@ import {
     FETCH_USERS_FAILURE,
     FETCH_USERS_REQUEST,
     FETCH_USERS_SUCCESS,
-} from '../action-types';
+} from '../actions/types';
   
 const initialState = {
-    users: [],
+    user: null,
     loading: false,
+    called: false,
     error: '',
 };
   
@@ -21,6 +22,7 @@ const heroesReducer = (state = initialState, action) => {
         return {
           ...state,
           loading: false,
+          called: true,
           users: action.payload,
           error: '',
         };

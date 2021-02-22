@@ -19,12 +19,13 @@ const fetchUsersFailure = error => ({
     payload: error,
 });
 
-export const fetchUsers = () => dispatch => {
+export const fetchUsers = (email) => dispatch => {
     dispatch(fetchUsersRequest);
-    axios.get('https://akabab.github.io/superhero-api/api/all.json')
+    axios.get('https://motocyclee-store.herokuapp.com/api/v1/users')
       .then(response => {
-        const users = response.data;
-        dispatch(fetchUsersSuccess(users));
+        const user = response.data.find(user=>user.email===email);
+        
+        dispatch(fetchUsersSuccess(user));
     })
       .catch(error => {
         dispatch(fetchUsersFailure(error.message));
