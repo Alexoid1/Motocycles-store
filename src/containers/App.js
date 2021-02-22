@@ -1,10 +1,14 @@
+import { BrowserRouter } from 'react-router-dom';
+import Routes from './Routes'
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <p>halo!</p>
-    </div>
+    <BrowserRouter>
+       <div className="App" data-testid="website_name">
+        <Routes/>
+       </div>
+    </BrowserRouter>
   );
 }
 

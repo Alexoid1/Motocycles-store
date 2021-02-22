@@ -1,0 +1,98 @@
+.sliderCont {
+  width: 100%;
+  height: 100vh;
+  display: grid;
+  justify-content: space-evenly;
+  align-items: center;
+  text-align: center;
+}
+
+.pageCover {
+  background: url('../images/motocover.jpg');
+  background-size: cover;
+}
+
+.pageCover2 {
+  background: url('../images/motocover2.jpg');
+  background-size: cover;
+}
+
+.pageCover3 {
+  background: url('../images/motocover3.jpg');
+  background-size: cover;
+}
+
+.pageCover4 {
+  background: url('../images/motocover4.jpg');
+  background-size: cover;
+}
+
+.butonLogin {
+  background: rgb(151,190,15);
+  color: white;
+  width: 100px;
+  height: 40px;
+  font-size: 17px;
+  font-weight: bolder;
+  border: none;
+  border-radius: 50px;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  transition: ease-in-out 0.5s;
+}
+
+.startBoton {
+  background: rgb(151,190,15);
+  color: white;
+  width: 100px;
+  height: 35px;
+  font-size: 17px;
+  font-weight: bolder;
+  border: none;
+  border-radius: 50px;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  transition: ease-in-out 0.5s;
+}
+
+.butonLogin:hover, .startBoton:hover{
+  background: yellowgreen;
+  transform: scale(1.1);
+}
+
+.loginTitle {
+  color: white;
+  font-family: 'Big Shoulders Stencil Text', cursive;
+  font-size: 50px;
+}
+
+.circleContainer {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin: 30px 50px;
+}
+
+.circle {
+  border: 3px solid white;
+  border-radius: 100px;
+  height: 10px;
+  width: 10px;
+  margin: 10px;
+}
+
+.circle:hover {
+  background: white;
+}
+
+.inputEmail {
+  background: none;
+  font-family: 'Big Shoulders Stencil Text', cursive;
+  height: 30px;
+  width: 130px;
+  font-size: 20px;
+  border: none;
+}
+
+.inputEmail::placeholder {
+  color: white;
+}
+
