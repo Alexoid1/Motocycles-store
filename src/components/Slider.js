@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './Slider.css'
 
-function Slider({ background1, background2, background3, background4 }) {
+const Slider = ({ background1, background2, background3, background4 }) => {
   return (
     <div className="circleContainer" >
         <div className="circle" role="button" onClick={background1}/>

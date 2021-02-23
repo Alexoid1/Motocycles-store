@@ -1,0 +1,22 @@
+.motosComp {
+    display: flex;
+    flex-direction: row;
+}
+
+.titleMoto {
+    text-align: center;
+    
+    padding: 0;
+}
+
+.compCont2 {
+    
+    padding-top: 100px;
+    width: 83%;
+}
+
+.par {
+    text-align: center;
+    margin-top:  -20px;
+    color: rgb(128, 125, 125);
+}

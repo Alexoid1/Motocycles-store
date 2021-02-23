@@ -14,7 +14,7 @@ const initialState = {
     error: '',
 };
   
-const heroesReducer = (state = initialState, action) => {
+const usersReducer = (state = initialState, action) => {
     switch (action.type) {
       case FETCH_USERS_REQUEST:
         return {
@@ -59,4 +59,4 @@ const heroesReducer = (state = initialState, action) => {
     }
 };
   
-export default heroesReducer;
+export default usersReducer;

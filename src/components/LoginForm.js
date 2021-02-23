@@ -4,7 +4,7 @@ import { fetchUsers, createUsers } from '../actions/index';
 import PropTypes from 'prop-types';
 import './LoginForm.css'
 
-function LoginForm({ fetchUsers, createUsers, users }) {
+const LoginForm = ({ fetchUsers, createUsers, users }) => {
     const [displays, setDisplays] = useState('inline-block');
     const [displays2, setDisplays2] = useState('none');
     const [email, setEmail] = useState(users.email);

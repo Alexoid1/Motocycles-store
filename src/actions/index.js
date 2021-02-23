@@ -6,6 +6,9 @@ import {
   CREATE_USERS_FAILURE,
   CREATE_USERS_REQUEST,
   CREATE_USERS_SUCCESS,
+  FETCH_MOTOS_FAILURE,
+  FETCH_MOTOS_REQUEST,
+  FETCH_MOTOS_SUCCESS,
 } from './types';
 
 const fetchUsersRequest = () => ({
@@ -36,6 +39,20 @@ const createUsersFailure = error => ({
     payload: error,
 });
 
+const fetchMotosRequest = () => ({
+  type: FETCH_MOTOS_REQUEST,
+});
+
+const fetchMotosSuccess = motos => ({
+  type: FETCH_MOTOS_SUCCESS,
+  payload: motos,
+});
+
+const fetchMotosFailure = error => ({
+  type: FETCH_MOTOS_FAILURE,
+  payload: error,
+});
+
 export const fetchUsers = (email) => dispatch => {
     dispatch(fetchUsersRequest);
     axios.get('https://motocyclee-store.herokuapp.com/api/v1/users')
@@ -60,8 +77,22 @@ export const createUsers = (name, email) => dispatch => {
         const user = response.data
         console.log(user)
         dispatch(createUsersSuccess(user));
+        window.location.href = '/motorcycles';
     })
       .catch(error => {
         dispatch(createUsersFailure(error.message));
     });
+};
+
+export const fetchMotos = () => dispatch => {
+  dispatch(fetchMotosRequest);
+  axios.get('https://motocyclee-store.herokuapp.com/api/v1/motocycles')
+    .then(response => {
+      const motos = response.data
+
+      dispatch(fetchMotosSuccess(motos));
+  })
+    .catch(error => {
+      dispatch(fetchMotosFailure(error.message));
+  });
 };

@@ -3,7 +3,7 @@ import Slider from '../components/Slider';
 import LoginForm from '../components/LoginForm'
 import './SignUpPage.css';
 
-function SignUpPage() {
+const SignUpPage = () => {
   const [backgroundi,setBackgroundi] = useState('pageCover');
   
   const ChangeBackground =(e)=>{
