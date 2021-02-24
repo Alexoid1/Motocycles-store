@@ -1,15 +1,19 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './MotoCard.css';
 
 const MotoCard = ({ id, image, name, model, price }) => {
+  const rou="/motorcycles/"+id
   return (
     
-      <div className="cardHero">
-        <div className="circleCont">
-          <img className="imgCont" src={image} alt="heroimage" />
-        </div>
-        <h5>{name}</h5>
-        <p className="description">sdu ijoidjcoi ijdsaofisdj isjdofisdj jsodifjs sdjosdkdo</p>
+      <div className="cardMoto">
+        <Link to={rou}>
+          <div className="circleCont">
+            <img className="imgCont" src={image} alt="heroimage" />
+          </div>
+          <h5>{name}</h5>
+          <p className="description">sdu ijoidjcoi ijdsaofisdj isjdofisdj jsodifjs sdjosdkdo</p>
+        </Link>
         <div className="iconsC">
           <div>
             <i class="fa fa-facebook-official" aria-hidden="true"></i>

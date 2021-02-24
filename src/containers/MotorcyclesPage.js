@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import MotosSlider from '../components/MotosSlider'
 import './MotorcyclesPage.css';
 const MotorcyclesPage = () => {

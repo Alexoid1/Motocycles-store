@@ -1,0 +1,4 @@
+.motopage {
+    display: flex;
+    flex-direction: row;
+}

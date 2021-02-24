@@ -8,16 +8,45 @@ import {
   } from '../actions/index';
 
 const MotosSlider = ({ fetchMotos, motos }) => {
-//   const[arr, setArr] = useState(arrSlider(index));
   const[index,setIndex]=useState(3)
   useEffect(() => {
     fetchMotos();
   }, []);
-  const arrSlider = (index) => {
-      let start=index-3
-      let mot=motos.motos.slice(start,index)
-      return mot
+
+  
+
+  const nextSlide = () => {
+    if(index+1===motos.motos.length){
+      setIndex(3)
+    }else{
+      setIndex(index +1)
+    }
+    
   }
+
+  const prevSlide = () => {
+    if(index-4<0){
+      setIndex(motos.motos.length-1)
+    }else{
+      setIndex(index -1)
+    }
+    
+  }
+
+  const itemArr = (ind,moto) =>{
+    const lastIndex=index-3
+    if(ind<=index && ind>lastIndex ){
+      return(<MotoCard
+        key={moto.id}
+        id={moto.id}
+        image={moto.image}
+        name={moto.name}
+        model={moto.model}
+        price={moto.price}
+      />)
+    }
+  }
+
   let comp;
   if (motos.loading) {
     comp = <DotLoader />;
@@ -26,22 +55,15 @@ const MotosSlider = ({ fetchMotos, motos }) => {
   } else {
     comp=
     <div className="sliderContainer">
-        <button className="buttonLeft"><i class="fa fa-chevron-left fa-2x" aria-hidden="true"></i></button>
+        <button className="buttonLeft" type="button" onClick={prevSlide}><i class="fa fa-chevron-left fa-2x" aria-hidden="true"></i></button>
         <div className="header-container">
           {
-            arrSlider(index).map((moto,index) => (
-              <MotoCard
-                key={moto.id}
-                id={moto.id}
-                image={moto.image}
-                name={moto.name}
-                model={moto.model}
-                price={moto.price}
-              />
+            motos.motos.map((moto,ind) => (
+              itemArr(ind,moto) 
             ))
           }
         </div>
-        <button className="buttonRight"><i class="fa fa-chevron-right fa-2x" aria-hidden="true"></i></button>
+        <button className="buttonRight" type="button" onClick={nextSlide} ><i class="fa fa-chevron-right fa-2x" aria-hidden="true"></i></button>
         
     </div>
  }
