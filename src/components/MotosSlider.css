@@ -1,0 +1,41 @@
+.header-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 870px;
+    margin: auto;
+    overflow: hidden;
+}
+
+.buttonLeft {
+    background: rgb(151,190,15);
+    color: white;
+    width: 70px;
+    height: 85px;
+    font-size: 17px;
+    font-weight: bolder;
+    border: none;
+    border-radius: 0 50px 50px 0;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    transition: ease-in-out 0.5s; 
+}
+
+.buttonRight {
+    background: rgb(151,190,15);
+    color: white;
+    width: 70px;
+    height: 85px;
+    font-size: 17px;
+    font-weight: bolder;
+    border: none;
+    border-radius: 50px 0 0 50px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    transition: ease-in-out 0.5s; 
+}
+
+.sliderContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}

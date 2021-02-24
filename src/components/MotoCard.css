@@ -1,0 +1,67 @@
+.cardHero {
+    width: 220px;
+    height: 320px;
+    margin-right: 50px;
+    border-radius: 7px;
+    text-align: center;
+    position: relative;
+}
+  
+.imgCont {
+    background: grey;
+    width: 210px;
+    border-radius: 50px;
+}
+
+.circleCont {
+    width: 220px;
+    height: 220px;
+    border-radius: 100%;
+    background: rgb(218, 216, 216);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+  
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.description {
+    color:rgb(168, 167, 167);
+    font-family: 'Big Shoulders Stencil Text', cursive;
+    font-size: 12px;
+}
+
+.iconsC {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.iconsC div {
+    width:30px;
+    height: 30px;
+    border: 1px solid  rgb(202, 198, 198);
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 6px
+}
+
+.iconsC div:hover {
+    
+    color: grey;
+    transform: scale(1.1);
+}
+
+.iconsC div i {
+    color: rgb(202, 198, 198);
+}
+
+.iconsC div i:hover {
+    color: grey;
+
+}
