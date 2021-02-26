@@ -1,0 +1,12 @@
+.table2 {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.table2 td, .table2 th {
+  text-align: left;
+  padding: 8px;
+  border-bottom: 3px solid grey;
+}

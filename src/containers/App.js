@@ -5,9 +5,9 @@ import './App.css';
 const App = () => {
   return (
     <BrowserRouter>
-       <div className="App" data-testid="website_name">
+      <div className="App" data-testid="website_name">
         <Routes/>
-       </div>
+      </div>
     </BrowserRouter>
   );
 }

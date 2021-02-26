@@ -1,7 +1,8 @@
 .cardMoto {
     width: 220px;
-    height: 420px;
-    margin-right: 50px;
+    height: 350px;
+    margin: 50px;
+    
     border-radius: 7px;
     text-align: center;
     position: relative;
@@ -13,15 +14,14 @@
 }
   
 .imgCont {
-    background: grey;
     width: 210px;
     border-radius: 50px;
     
 }
 
 .circleCont {
-    width: 220px;
-    height: 220px;
+    width: 150px;
+    height: 150px;
     border-radius: 100%;
     background: rgb(218, 216, 216);
     display: flex;
@@ -37,8 +37,12 @@ a {
 
 .description {
     color:rgb(168, 167, 167);
-    font-family: 'Big Shoulders Stencil Text', cursive;
+    font-family: Arial;
     font-size: 12px;
+}
+
+.description:hover {
+    color: black;
 }
 
 .iconsC {

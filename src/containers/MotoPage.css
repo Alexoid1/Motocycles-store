@@ -1,4 +1,42 @@
 .motopage {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.contCta {
+  width: 90%;
+  text-align: right;
+}
+
+.motoInfo p {
+  width: 100px;
+}
+.motoInfo {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.butonTT {
+  background: rgb(151,190,15);
+  color: white;
+  width: 200px;
+  height: 40px;
+  font-size: 17px;
+  font-weight: bolder;
+  border: none;
+  border-radius: 50px;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  transition: ease-in-out 0.5s;
+}
+
+.butonTT:hover {
+background: yellowgreen;
+transform: scale(1.1);
+}
+
+.butonTc {
+  margin-top: 40px;
+  text-align: center;
 }

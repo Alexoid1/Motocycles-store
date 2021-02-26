@@ -7,6 +7,12 @@
     overflow: hidden;
 }
 
+.loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .buttonLeft {
     background: grey;
     color: white;

@@ -58,6 +58,10 @@ export const fetchUsers = (email) => dispatch => {
     axios.get('https://motocyclee-store.herokuapp.com/api/v1/users')
       .then(response => {
         const user = response.data.find(user=>user.email===email);
+        console.log(user)
+        if(user){
+          window.location.href = '/motorcycles';
+        }
 
         dispatch(fetchUsersSuccess(user));
     })

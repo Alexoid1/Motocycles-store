@@ -2,8 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './MotoCard.css';
 
-const MotoCard = ({ id, image, name, model, price }) => {
+const MotoCard = ({ id, image, name, model }) => {
   const rou="/motorcycles/"+id
+  
   return (
     
       <div className="cardMoto">
@@ -12,7 +13,7 @@ const MotoCard = ({ id, image, name, model, price }) => {
             <img className="imgCont" src={image} alt="heroimage" />
           </div>
           <h5>{name}</h5>
-          <p className="description">sdu ijoidjcoi ijdsaofisdj isjdofisdj jsodifjs sdjosdkdo</p>
+          <p className="description">{model}</p>
         </Link>
         <div className="iconsC">
           <div>

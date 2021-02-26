@@ -19,6 +19,7 @@ const LoginForm = ({ fetchUsers, createUsers, users }) => {
     
       const handleSearchUser = (e) => {
         e.preventDefault();
+        console.log(email)
         fetchUsers(email)
         
       }
@@ -83,7 +84,7 @@ const LoginForm = ({ fetchUsers, createUsers, users }) => {
 }
 
 const mapDispatchToProps = dispatch => ({
-    fetchUsers: () => dispatch(fetchUsers()),
+    fetchUsers: (email) => dispatch(fetchUsers(email)),
     createUsers: (name, email) => dispatch(createUsers(name, email)), 
 });
     

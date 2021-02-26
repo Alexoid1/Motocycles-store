@@ -1,17 +1,22 @@
-import React from 'react';
-import './AsideMenu.css'
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import './AsideMenu.css';
 
-const AsideMenu = () => {
+const AsideMenu = ({users}) => {
+  // const [name, setName] = useState(users.user.name)
+  console.log(users.user)
   return (
     <div className="navBar">
         <nav>
             <div>
                 <h1 className="title2">MOTORCYCLE</h1>
+                {/* <p>{users.user.name}</p> */}
                 <ul>
-                <li>MODELS</li>
-                <li>LIFESTYLE</li>
-                <li>SHOP</li>
-                <li>TEST DRIVE</li>
+                  <Link to="/motorcycles"><li>MODELS</li></Link>
+                  <li>FAVORITES</li>
+                  <li>TEST DRIVE</li>
+                  <Link to="/"><li>LOG OUT</li></Link>
                 </ul>
             </div>
             <div className="iconCont">
@@ -27,4 +32,8 @@ const AsideMenu = () => {
   );
 }
 
-export default AsideMenu;
+const mapStateToProps = state => ({
+  users: state.users,
+});
+
+export default connect(mapStateToProps)(AsideMenu);

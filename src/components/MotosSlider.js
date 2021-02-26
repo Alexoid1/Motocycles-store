@@ -42,14 +42,16 @@ const MotosSlider = ({ fetchMotos, motos }) => {
         image={moto.image}
         name={moto.name}
         model={moto.model}
-        price={moto.price}
       />)
     }
   }
 
   let comp;
-  if (motos.loading) {
-    comp = <DotLoader />;
+  if (motos.loading||motos.motos.length===0) {
+    comp = 
+      <div className="loader">
+        <DotLoader />
+      </div>;
   } else if (motos.error) {
     comp = <h2 className="error">{motos.error}</h2>;
   } else {
