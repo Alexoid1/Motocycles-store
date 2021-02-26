@@ -1,17 +1,21 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+
 import './AsideMenu.css';
 
 const AsideMenu = ({users}) => {
-  // const [name, setName] = useState(users.user.name)
-  console.log(users.user)
+  const user = JSON.parse(localStorage.getItem('userMoto'));
+  
+  
+  
+  console.log(user)
   return (
     <div className="navBar">
         <nav>
             <div>
                 <h1 className="title2">MOTORCYCLE</h1>
-                {/* <p>{users.user.name}</p> */}
+                <p className="name">{user.name}</p>
                 <ul>
                   <Link to="/motorcycles"><li>MODELS</li></Link>
                   <li>FAVORITES</li>

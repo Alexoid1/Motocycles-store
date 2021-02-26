@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+
 import { connect } from 'react-redux';
 import DotLoader from "react-spinners/ClipLoader";
 import './MotosSlider.css'

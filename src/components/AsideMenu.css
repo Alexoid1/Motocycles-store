@@ -45,3 +45,7 @@ nav {
 .iconCont i {
     margin: 10px;
 }
+
+.name {
+    text-align: center;
+}

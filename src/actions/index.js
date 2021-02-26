@@ -1,4 +1,5 @@
 import axios from 'axios';
+
 import {
   FETCH_USERS_FAILURE,
   FETCH_USERS_REQUEST,
@@ -59,7 +60,11 @@ export const fetchUsers = (email) => dispatch => {
       .then(response => {
         const user = response.data.find(user=>user.email===email);
         console.log(user)
+       
+        localStorage.setItem('userMoto', JSON.stringify(user));
+        
         if(user){
+          
           window.location.href = '/motorcycles';
         }
 
