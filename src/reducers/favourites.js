@@ -1,11 +1,15 @@
 import {
-    FETCH_MOTOS_FAILURE,
-    FETCH_MOTOS_REQUEST,
-    FETCH_MOTOS_SUCCESS,
+    FETCH_FAVOURITES_FAILURE,
+    FETCH_FAVOURITES_REQUEST,
+    FETCH_FAVOURITES_SUCCESS,
+    CREATE_FAVOURITE_FAILURE,
+    CREATE_FAVOURITE_REQUEST,
+    CREATE_FAVOURITE_SUCCESS,
 } from '../actions/types';
 
 const initialState = {
     motos: [],
+    moto: null,
     loading: false,
     error: '',
 };
@@ -30,9 +34,27 @@ const favouritesReducer = (state = initialState, action) => {
           loading: false,
           error: action.payload,
         };
+      case CREATE_FAVOURITE_REQUEST:
+        return {
+          ...state,
+          loading: true,
+        };
+      case CREATE_FAVOURITE_SUCCESS:
+        return {
+          ...state,
+          loading: false, 
+          moto: action.payload,
+          error: '',
+        };
+        case CREATE_FAVOURITE_FAILURE:
+          return {
+            ...state,
+            loading: false,
+            error: action.payload,
+          };
       default:
         return state;
     }
 };
   
-export default motosReducer;
+export default favouritesReducer;

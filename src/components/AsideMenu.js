@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-
+import {
+  createUsersSuccess,
+} from '../actions/index';
 import './AsideMenu.css';
 
 const AsideMenu = ({users}) => {
   const user = JSON.parse(localStorage.getItem('userMoto'));
+  createUsersSuccess(user)
   
-  
+  const rou=`users/${user.id}/favourites`
   
   console.log(user)
   return (
@@ -18,7 +21,7 @@ const AsideMenu = ({users}) => {
                 <p className="name">{user.name}</p>
                 <ul>
                   <Link to="/motorcycles"><li>MODELS</li></Link>
-                  <li>FAVORITES</li>
+                  <Link to={rou}><li>FAVORITES</li></Link>
                   <li>TEST DRIVE</li>
                   <Link to="/"><li>LOG OUT</li></Link>
                 </ul>
@@ -35,6 +38,10 @@ const AsideMenu = ({users}) => {
     
   );
 }
+
+const mapDispatchToProps = dispatch => ({
+  createUsersSuccess : (user) => dispatch(createUsersSuccess (user)),
+});
 
 const mapStateToProps = state => ({
   users: state.users,

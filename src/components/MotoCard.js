@@ -1,9 +1,18 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import {
+  createFavourite,
+} from '../actions/index';
 import './MotoCard.css';
 
-const MotoCard = ({ id, image, name, model }) => {
+
+const MotoCard = ({ id, image, name, model, favourites, createFavourite }) => {
   const rou="/motorcycles/"+id
+
+  const handleLike = () => {
+    createFavourite()
+  }
   
   return (
     
@@ -17,13 +26,7 @@ const MotoCard = ({ id, image, name, model }) => {
         </Link>
         <div className="iconsC">
           <div>
-            <i class="fa fa-facebook-official" aria-hidden="true"></i>
-          </div>
-          <div>
-            <i class="fa fa-twitter" aria-hidden="true"></i>
-          </div>
-          <div>
-            <i class="fa fa-instagram" aria-hidden="true"></i>
+            <i class="fa fa-thumbs-up" aria-hidden="true" onClick={handleLike}></i>
           </div>
         </div>
       </div>
@@ -31,4 +34,14 @@ const MotoCard = ({ id, image, name, model }) => {
   );
 }
 
-export default MotoCard;
+const mapDispatchToProps = dispatch => ({
+  createFavourite: (userid,motoid) => dispatch(createFavourite(userid,motoid)),
+});
+
+const mapStateToProps = state => ({
+  favourites: state.favourites,
+  users:state.users
+  
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(MotoCard);

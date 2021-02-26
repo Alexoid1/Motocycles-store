@@ -10,6 +10,13 @@ import {
   FETCH_MOTOS_FAILURE,
   FETCH_MOTOS_REQUEST,
   FETCH_MOTOS_SUCCESS,
+  FETCH_FAVOURITES_FAILURE,
+  FETCH_FAVOURITES_REQUEST,
+  FETCH_FAVOURITES_SUCCESS,
+  CREATE_FAVOURITE_FAILURE,
+  CREATE_FAVOURITE_REQUEST,
+  CREATE_FAVOURITE_SUCCESS,
+  SET_USER
 } from './types';
 
 const fetchUsersRequest = () => ({
@@ -30,7 +37,7 @@ const createUsersRequest = () => ({
     type: CREATE_USERS_REQUEST,
   });
   
-const createUsersSuccess = user => ({
+export const createUsersSuccess = user => ({
     type: CREATE_USERS_SUCCESS,
     payload: user,
 });
@@ -53,6 +60,35 @@ const fetchMotosFailure = error => ({
   type: FETCH_MOTOS_FAILURE,
   payload: error,
 });
+
+const fetchFavouritesRequest = () => ({
+  type: FETCH_FAVOURITES_REQUEST,
+});
+
+const fetchFavouritesSuccess = motos => ({
+  type: FETCH_FAVOURITES_SUCCESS,
+  payload: motos,
+});
+
+const fetchFavouritesFailure = error => ({
+  type: FETCH_FAVOURITES_FAILURE,
+  payload: error,
+});
+
+const createFavouriteRequest = () => ({
+  type: CREATE_FAVOURITE_REQUEST,
+});
+
+const createFavouriteSuccess = moto => ({
+  type: CREATE_FAVOURITE_SUCCESS,
+  payload: moto,
+});
+
+const createFavouriteFailure = error => ({
+  type: CREATE_FAVOURITE_FAILURE,
+  payload: error,
+});
+
 
 export const fetchUsers = (email) => dispatch => {
     dispatch(fetchUsersRequest);
@@ -103,5 +139,36 @@ export const fetchMotos = () => dispatch => {
   })
     .catch(error => {
       dispatch(fetchMotosFailure(error.message));
+  });
+};
+
+export const fetchFavourites = (userid) => dispatch => {
+  dispatch(fetchFavouritesRequest);
+  axios.get(`https://motocyclee-store.herokuapp.com/api/v1/users/${userid}/favourites`)
+    .then(response => {
+      const motos = response.data
+
+      dispatch(fetchFavouritesSuccess(motos));
+  })
+    .catch(error => {
+      dispatch(fetchFavouritesFailure(error.message));
+  });
+};
+
+export const createFavourite = (userid, motoid) => dispatch => {
+  dispatch(createFavouriteRequest);
+  axios.post(`https://motocyclee-store.herokuapp.com/api/v1/users/${userid}/favourites`,
+  {
+    user_id: userid,
+    motocycle_id: motoid,
+  })
+    .then(response => {
+      const user = response.data
+      console.log(user)
+      dispatch(createFavouriteSuccess(user));
+      
+  })
+    .catch(error => {
+      dispatch(createFavouriteFailure(error.message));
   });
 };
