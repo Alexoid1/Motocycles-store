@@ -5,6 +5,9 @@ import {
     CREATE_FAVOURITE_FAILURE,
     CREATE_FAVOURITE_REQUEST,
     CREATE_FAVOURITE_SUCCESS,
+    DELETE_FAVOURITE_FAILURE,
+    DELETE_FAVOURITE_REQUEST,
+    DELETE_FAVOURITE_SUCCESS,
 } from '../actions/types';
 
 const initialState = {
@@ -43,15 +46,34 @@ const favouritesReducer = (state = initialState, action) => {
         return {
           ...state,
           loading: false, 
-          moto: action.payload,
+          motos: action.payload,
           error: '',
         };
-        case CREATE_FAVOURITE_FAILURE:
-          return {
-            ...state,
-            loading: false,
-            error: action.payload,
-          };
+      case CREATE_FAVOURITE_FAILURE:
+        return {
+          ...state,
+          loading: false,
+          error: action.payload,
+        };
+      case DELETE_FAVOURITE_REQUEST:
+        return {
+          ...state,
+          loading: true,
+        };
+      case DELETE_FAVOURITE_SUCCESS:
+        return {
+          ...state,
+          loading: false, 
+          motos: action.payload,
+          error: '',
+        };
+      case DELETE_FAVOURITE_FAILURE:
+        return {
+          ...state,
+          loading: false,
+          error: action.payload,
+        }
+          
       default:
         return state;
     }

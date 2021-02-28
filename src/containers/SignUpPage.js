@@ -5,7 +5,7 @@ import './SignUpPage.css';
 
 const SignUpPage = () => {
   const [backgroundi,setBackgroundi] = useState('pageCover');
-  
+  localStorage.clear();
   const ChangeBackground =(e)=>{
     e.preventDefault();
     setBackgroundi('pageCover')

@@ -16,7 +16,10 @@ import {
   CREATE_FAVOURITE_FAILURE,
   CREATE_FAVOURITE_REQUEST,
   CREATE_FAVOURITE_SUCCESS,
-  SET_USER
+  DELETE_FAVOURITE_FAILURE,
+  DELETE_FAVOURITE_REQUEST,
+  DELETE_FAVOURITE_SUCCESS,
+ 
 } from './types';
 
 const fetchUsersRequest = () => ({
@@ -86,6 +89,20 @@ const createFavouriteSuccess = moto => ({
 
 const createFavouriteFailure = error => ({
   type: CREATE_FAVOURITE_FAILURE,
+  payload: error,
+});
+
+const deleteFavouriteRequest = () => ({
+  type: DELETE_FAVOURITE_REQUEST,
+});
+
+const deleteFavouriteSuccess = moto => ({
+  type: DELETE_FAVOURITE_SUCCESS,
+  payload: moto,
+});
+
+const deleteFavouriteFailure = error => ({
+  type: DELETE_FAVOURITE_FAILURE,
   payload: error,
 });
 
@@ -159,7 +176,6 @@ export const createFavourite = (userid, motoid) => dispatch => {
   dispatch(createFavouriteRequest);
   axios.post(`https://motocyclee-store.herokuapp.com/api/v1/users/${userid}/favourites`,
   {
-    user_id: userid,
     motocycle_id: motoid,
   })
     .then(response => {
@@ -172,3 +188,22 @@ export const createFavourite = (userid, motoid) => dispatch => {
       dispatch(createFavouriteFailure(error.message));
   });
 };
+
+export const deleteFavourite = (userid, motoid) => dispatch => {
+  dispatch(deleteFavouriteRequest);
+  axios.delete(`https://motocyclee-store.herokuapp.com/api/v1/users/${userid}/favourites/${motoid}`)
+    .then(response => {
+      const favourites = response.data
+      
+      dispatch(deleteFavouriteSuccess(favourites));
+      
+  })
+    .catch(error => {
+      dispatch(deleteFavouriteFailure(error.message));
+  });
+};
+
+
+export const setUser = (user) => dispatch => {
+  dispatch(fetchUsersSuccess(user));
+}

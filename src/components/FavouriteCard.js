@@ -7,7 +7,7 @@ import {
 import './MotoCard.css';
 
 
-const MotoCard = ({ id, image, name, model, user, createFavourite }) => {
+const FavouriteCard = ({ id, image, name, model, user, createFavourite }) => {
   const rou="/motorcycles/"+id
 
   const handleLike = (e) => {
@@ -26,11 +26,6 @@ const MotoCard = ({ id, image, name, model, user, createFavourite }) => {
           <h5>{name}</h5>
           <p className="description">{model}</p>
         </Link>
-        <div className="iconsC">
-          <div>
-            <i class="fa fa-thumbs-up" aria-hidden="true" onClick={handleLike}></i>      
-          </div>   
-        </div>
       </div>
    
   );
@@ -46,4 +41,4 @@ const mapStateToProps = state => ({
   
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(MotoCard);
+export default connect(mapStateToProps, mapDispatchToProps)(FavouriteCard);

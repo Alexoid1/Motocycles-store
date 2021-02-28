@@ -1,18 +1,23 @@
 import React, { useEffect, useState } from 'react';
+
 import { connect } from 'react-redux';
 import DotLoader from "react-spinners/ClipLoader";
 import './MotosSlider.css'
-import MotoCard from './MotoCard'
+import FavouriteCard from './FavouriteCard'
 import {
-    fetchMotos,
-    
+    fetchFavourites,
   } from '../actions/index';
 
-const MotosSlider = ({ fetchMotos, motos }) => {
-  const[index,setIndex]=useState(2);
+const FavouriteSlider = ({ fetchFavourites, motos, users }) => {
+  const[index,setIndex]=useState(2)
   const user = JSON.parse(localStorage.getItem('userMoto'));
+  
   useEffect(() => {
-    fetchMotos();
+    if(users.user.id){
+      fetchFavourites(users.user.id);
+    }else{
+      fetchFavourites(user.id);
+    }
     
   }, []);
 
@@ -38,11 +43,9 @@ const MotosSlider = ({ fetchMotos, motos }) => {
 
   const itemArr = (ind,moto) =>{
     const lastIndex=index-3
-    
     if(ind<=index && ind>lastIndex ){
-
-      return(<MotoCard
-        key={moto.id}
+      return(<FavouriteCard
+        key={moto.id+'s'}
         id={moto.id}
         image={moto.image}
         name={moto.name}
@@ -78,11 +81,12 @@ const MotosSlider = ({ fetchMotos, motos }) => {
 }
 
 const mapDispatchToProps = dispatch => ({
-    fetchMotos: () => dispatch(fetchMotos()),
+    fetchFavourites: (userid) => dispatch(fetchFavourites(userid)),
 });
   
 const mapStateToProps = state => ({
-    motos: state.motos,
+    motos: state.favourites,
+    users: state.users
 });
   
-export default connect(mapStateToProps, mapDispatchToProps)(MotosSlider);
+export default connect(mapStateToProps, mapDispatchToProps)(FavouriteSlider);

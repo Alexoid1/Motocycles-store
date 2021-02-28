@@ -5,6 +5,7 @@
 }
 
 .contCta {
+  max-width: 350px;
   width: 90%;
   text-align: right;
 }

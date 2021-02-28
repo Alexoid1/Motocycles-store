@@ -14,8 +14,8 @@ const MotoPage = ({motos}) => {
        
        <div className="motopage"> 
            <SliderMotoPage moto={moto}/>
-           <div>
-               <div className="tableCont">
+           <div className="tableCont">
+               <div >
                    <div className="contCta">
                         <h3 className="tableTitle">
                             {moto.name}

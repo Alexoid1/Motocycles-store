@@ -1,18 +1,18 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import {
-  createUsersSuccess,
+  setUser,
 } from '../actions/index';
 import './AsideMenu.css';
 
-const AsideMenu = ({users}) => {
+const AsideMenu = ({users, setUser}) => {
   const user = JSON.parse(localStorage.getItem('userMoto'));
-  createUsersSuccess(user)
   
-  const rou=`users/${user.id}/favourites`
+  useEffect(() => {
+    setUser(user);
+  }, []);
   
-  console.log(user)
   return (
     <div className="navBar">
         <nav>
@@ -21,8 +21,8 @@ const AsideMenu = ({users}) => {
                 <p className="name">{user.name}</p>
                 <ul>
                   <Link to="/motorcycles"><li>MODELS</li></Link>
-                  <Link to={rou}><li>FAVORITES</li></Link>
-                  <li>TEST DRIVE</li>
+                  <Link to="/favourites"><li>FAVORITES</li></Link>
+                  <Link to="/Test-Moto"><li>TEST DRIVE</li></Link>
                   <Link to="/"><li>LOG OUT</li></Link>
                 </ul>
             </div>
@@ -40,11 +40,11 @@ const AsideMenu = ({users}) => {
 }
 
 const mapDispatchToProps = dispatch => ({
-  createUsersSuccess : (user) => dispatch(createUsersSuccess (user)),
+  setUser : (user) => dispatch(setUser(user)),
 });
 
 const mapStateToProps = state => ({
   users: state.users,
 });
 
-export default connect(mapStateToProps)(AsideMenu);
+export default connect(mapStateToProps, mapDispatchToProps)(AsideMenu);
