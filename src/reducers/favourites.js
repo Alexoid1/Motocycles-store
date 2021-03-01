@@ -13,6 +13,7 @@ import {
 const initialState = {
     motos: [],
     moto: null,
+    favourites: [],
     loading: false,
     error: '',
 };
@@ -46,7 +47,7 @@ const favouritesReducer = (state = initialState, action) => {
         return {
           ...state,
           loading: false, 
-          motos: action.payload,
+          favourites: action.payload,
           error: '',
         };
       case CREATE_FAVOURITE_FAILURE:
@@ -64,7 +65,7 @@ const favouritesReducer = (state = initialState, action) => {
         return {
           ...state,
           loading: false, 
-          motos: action.payload,
+          favourites: action.payload,
           error: '',
         };
       case DELETE_FAVOURITE_FAILURE:

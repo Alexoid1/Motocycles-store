@@ -5,6 +5,7 @@ import 'react-datepicker/dist/react-datepicker.css'
 
 const TestMotoPage = () => {
   const [text, setText] = useState('All');
+  const [city, setCity] = useState('Quito');
   const [selectedDate, setSelectedDate] = useState(null)
   const motoCategories = [
     {name:'1937 Brough Superior SS100', index:1 },
@@ -23,12 +24,37 @@ const TestMotoPage = () => {
     {name:'Ecosse Titanium Series FE TI XX',index:14},
     {name:'Yamaha Crux', index:15}
     ];
+  const cities = [
+    'Quito',
+    'New York',
+    'Los Angeles',
+    'Berlin',
+    'Londres',
+    'Beijin',
+    'Buenos Aires',
+    'Bogota',
+    'Tokyo',
+    'Moscu',
+    'Madrid',
+    'Seul',
+    'Mexico',
+    'Paris'
+    ];
+
     const handleTextChange = e => {
       const { target: { value } } = e;
       setText(value);
       // changeFilter(value);
       // searchByFilter();
     };
+
+    const handleCityChange = e => {
+      const { target: { value } } = e;
+      setCity(value);
+      // changeFilter(value);
+      // searchByFilter();
+    };
+
   return (
     <div className="contTC">
         <div className="contTest">
@@ -36,13 +62,14 @@ const TestMotoPage = () => {
                 <h2>BOOK A MOTORCYCLE TEST-RIDE</h2>
                 <hr/>
                 <p>There more than 15 motorcycles model. There are showrooms all over the globe which some includes test-ride facilities if you want to find-out if a test-ride is available plese use the selector below</p>
-                <div>
+                <div className="formC">
                   <form>
                    
                     <select
                       value={text}
                       onChange={handleTextChange}
                       className="selectFilter"
+                      
                     >
                       <option value="All">All</option>
                       {
@@ -57,13 +84,39 @@ const TestMotoPage = () => {
                         ))
                       }
                     </select>
+                    <select
+                      value={city}
+                      onChange={handleCityChange}
+                      className="selectFilter"
+                      placeholder="City"
+                    >
+                      
+                      {
+                        cities.map(city => (
+                          <option
+                            key={city}
+                            value={city}
+                            
+                          >
+                            {city}
+                          </option>
+                        ))
+                      }
+                    </select>
                     <DatePicker 
                     selected={selectedDate} 
                     onChange={date => setSelectedDate(date)}
                     dateFormat="yyyy/MM/dd"
                     minDate={new Date}
+                    className="selectFilter filter"
+                    placeholderText="Select Date"
                     />
+                    <div className="btnCont">
+                      <button type="submit" className="booknow" >Book Now</button>
+                    </div>
+                    
                   </form>
+                  
                 </div>
             </div>
             <div>
