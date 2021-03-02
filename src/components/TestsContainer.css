@@ -1,0 +1,4 @@
+.testBoxCont {
+    max-height: 180px;
+    overflow: auto;
+}

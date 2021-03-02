@@ -3,18 +3,19 @@ import { Link } from 'react-router-dom';
 import './SliderMotoPage.css'
 
 const SliderMotoPage = ({moto}) => {
+    const  imagesMotos = [moto.image, moto.image2, moto.image3]
     const [img, setImg] = useState(moto.image)
     const handleChangeImage2 = (e) => {
         e.preventDefault()
-        setImg(moto.image2)
+        setImg(imagesMotos[1])
     }
     const handleChangeImage = (e) => {
         e.preventDefault()
-        setImg(moto.image)
+        setImg(imagesMotos[0])
     }
     const handleChangeImage3 = (e) => {
         e.preventDefault()
-        setImg(moto.image3)
+        setImg(imagesMotos[2])
     }
   return (
     <div class="motoPageC">

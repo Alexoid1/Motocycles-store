@@ -19,6 +19,12 @@ import {
   DELETE_FAVOURITE_FAILURE,
   DELETE_FAVOURITE_REQUEST,
   DELETE_FAVOURITE_SUCCESS,
+  FETCH_BOOKMOTO_FAILURE,
+  FETCH_BOOKMOTO_REQUEST,
+  FETCH_BOOKMOTO_SUCCESS,
+  CREATE_BOOKMOTO_FAILURE,
+  CREATE_BOOKMOTO_REQUEST,
+  CREATE_BOOKMOTO_SUCCESS,
  
 } from './types';
 
@@ -106,6 +112,33 @@ const deleteFavouriteFailure = error => ({
   payload: error,
 });
 
+const fetchBookMotoRequest = () => ({
+  type: FETCH_BOOKMOTO_REQUEST,
+});
+
+const fetchBookMotoSuccess = bookmoto => ({
+  type: FETCH_BOOKMOTO_SUCCESS,
+  payload: bookmoto,
+});
+
+const fetchBookMotoFailure = error => ({
+  type: FETCH_BOOKMOTO_FAILURE,
+  payload: error,
+});
+
+const createBookMotoRequest = () => ({
+  type: CREATE_BOOKMOTO_REQUEST,
+});
+
+const createBookMotoSuccess = bookmoto => ({
+  type: CREATE_BOOKMOTO_SUCCESS,
+  payload: bookmoto,
+});
+
+const createBookMotoFailure = error => ({
+  type: CREATE_BOOKMOTO_FAILURE,
+  payload: error,
+});
 
 export const fetchUsers = (email) => dispatch => {
     dispatch(fetchUsersRequest);
@@ -203,6 +236,35 @@ export const deleteFavourite = (userid, motoid) => dispatch => {
   });
 };
 
+export const fetchMotoBook = (userid) => dispatch => {
+  dispatch(fetchBookMotoRequest);
+  axios.get(`https://motocyclee-store.herokuapp.com/api/v1/users/${userid}/tests`)
+    .then(response => {
+      const bookmotos = response.data
+
+      dispatch(fetchBookMotoSuccess(bookmotos));
+  })
+    .catch(error => {
+      dispatch(fetchBookMotoFailure(error.message));
+  });
+};
+
+export const createMotoBook = (userid, motoid, date, city) => dispatch => {
+  dispatch(createBookMotoRequest);
+  axios.post(`https://motocyclee-store.herokuapp.com/api/v1/users/${userid}/tests`,
+  {
+    motocycle_id: motoid,
+    testDate: date,
+    city: city
+  })
+    .then(response => {
+      const bookmotos = response.data
+      dispatch(createBookMotoSuccess(bookmotos));
+  })
+    .catch(error => {
+      dispatch(createBookMotoFailure(error.message));
+  });
+};
 
 export const setUser = (user) => dispatch => {
   dispatch(fetchUsersSuccess(user));

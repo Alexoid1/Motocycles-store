@@ -5,13 +5,11 @@
 }
 
 .titleMoto {
-    text-align: center;
-    
+    text-align: center;  
     padding: 0;
 }
 
-.compCont2 {
-    
+.compCont2 { 
     padding-top: 100px;
     width: 83%;
 }
@@ -20,4 +18,15 @@
     text-align: center;
     margin-top:  -20px;
     color: rgb(128, 125, 125);
+}
+
+@media (max-width: 1050px) {
+    .motosComp {
+        display: block;
+    }
+
+    .compCont2{
+        padding-top: 10px;
+        width: 100%;
+    }
 }

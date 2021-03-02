@@ -2,18 +2,18 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import {
-  createFavourite,
+  deleteFavourite,
 } from '../actions/index';
 import './MotoCard.css';
 
 
-const FavouriteCard = ({ id, image, name, model, user, createFavourite }) => {
+const FavouriteCard = ({ id, image, name, model, user, deleteFavourite }) => {
   const rou="/motorcycles/"+id
 
-  const handleLike = (e) => {
+  const handleRemove = (e) => {
     e.preventDefault()
-    console.log(user)
-    createFavourite(user.id*1, id*1)
+   
+    deleteFavourite(user.id*1, id*1)
   }
 
   return (
@@ -26,13 +26,16 @@ const FavouriteCard = ({ id, image, name, model, user, createFavourite }) => {
           <h5>{name}</h5>
           <p className="description">{model}</p>
         </Link>
+        <div className="iconsC">
+          <button type="button" className="removeButton" onClick={handleRemove}>Remove</button>
+        </div>
       </div>
    
   );
 }
 
 const mapDispatchToProps = dispatch => ({
-  createFavourite: (userid,motoid) => dispatch(createFavourite(userid,motoid)),
+  deleteFavourite: (userid,motoid) => dispatch(deleteFavourite(userid,motoid)),
 });
 
 const mapStateToProps = state => ({

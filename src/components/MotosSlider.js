@@ -12,11 +12,8 @@ const MotosSlider = ({ fetchMotos, motos }) => {
   const[index,setIndex]=useState(2);
   const user = JSON.parse(localStorage.getItem('userMoto'));
   useEffect(() => {
-    fetchMotos();
-    
+    fetchMotos(); 
   }, []);
-
-  
 
   const nextSlide = () => {
     if(index+1===motos.motos.length){

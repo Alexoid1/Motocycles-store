@@ -10,7 +10,7 @@ import './MotorcyclesPage.css'
 const Routes = () => (
   <Switch>
     <Route exact path="/" component={SignUpPage} />
-    <Route exact path="/Test-Moto" component={TestMotoPage} />
+    <Route exact path="/Test-Moto/:id" component={TestMotoPage} />
     <div className="motosComp">
       <AsideMenu/>
       <Route exact path="/motorcycles" component={MotorcyclesPage} />

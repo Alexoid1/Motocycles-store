@@ -49,3 +49,39 @@ nav {
 .name {
     text-align: center;
 }
+
+@media (max-width: 1050px) {
+    .navBar {
+        width: 100%;
+    }
+
+    .iconCont{
+        display: none;
+    }
+
+    .optionCont {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;  
+    }
+
+    nav {
+        height: 70px;
+    }
+
+    .optionCont ul {
+        display: flex;
+        flex-direction: row;
+        margin: 0 30px;
+    }
+
+    .optionCont ul a {
+        margin: 10px;
+    }
+
+    .title2 {
+        margin: 20px;
+        padding: 0;
+        font-size: 30px;
+    }
+}
