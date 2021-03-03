@@ -1,107 +1,101 @@
 .cardMoto {
-    width: 220px;
-    height: 290px;
-    margin: 5px 50px;
-    
-    border-radius: 7px;
-    text-align: center;
-    position: relative;
-    
+  width: 220px;
+  height: 290px;
+  margin: 5px 50px;
+  border-radius: 7px;
+  text-align: center;
+  position: relative;
 }
 
-.circleCont:hover {
-    transform: scale(1.1);
-}
-  
 .imgCont {
-    width: 210px;
-    border-radius: 50px;
-    
+  width: 210px;
+  border-radius: 50px;
 }
 
 .circleCont {
-    width: 150px;
-    height: 150px;
-    border-radius: 100%;
-    background: rgb(218, 216, 216);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: ease-in-out 0.5s;
+  width: 150px;
+  height: 150px;
+  border-radius: 100%;
+  background: rgb(218, 216, 216);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: ease-in-out 0.5s;
 }
-  
+
+.circleCont:hover {
+  transform: scale(1.1);
+}
+
 a {
-    text-decoration: none;
-    color: black;
+  text-decoration: none;
+  color: black;
 }
 
 .description {
-    color:rgb(168, 167, 167);
-    font-family: Arial;
-    font-size: 12px;
+  color: rgb(168, 167, 167);
+  font-size: 12px;
 }
 
 .description:hover {
-    color: black;
+  color: black;
 }
 
 .iconsC {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 
 .iconsC div {
-    width:30px;
-    height: 30px;
-    border: 1px solid  rgb(202, 198, 198);
-    border-radius: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 6px
+  width: 30px;
+  height: 30px;
+  border: 1px solid  rgb(202, 198, 198);
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 6px;
 }
 
 .iconsC div:hover {
-    
-    color: grey;
-    transform: scale(1.1);
+  color: grey;
+  transform: scale(1.1);
 }
 
 .iconsC div i {
-    color: rgb(202, 198, 198);
+  color: rgb(202, 198, 198);
 }
 
 .iconsC div i:hover {
-    color: rgb(151,190,15);
-
+  color: rgb(151, 190, 15);
 }
 
 .removeButton {
-    width: 130px;
-    height: 35px;
-    border-radius: 15px;
-    background: grey;
-    color: white;
-    border:none;
-    transition: ease-in-out 0.5s;
+  width: 130px;
+  height: 35px;
+  border-radius: 15px;
+  background: grey;
+  color: white;
+  border: none;
+  transition: ease-in-out 0.5s;
 }
 
 .removeButton:hover {
-    transform: scale(1.1);
+  transform: scale(1.1);
 }
 
 @media (max-width: 820px) {
-    .cardMoto {
-        width: 200px;
-        height: 290px;
-        margin: 5px;
-    }
+  .cardMoto {
+    width: 200px;
+    height: 290px;
+    margin: 5px;
+  }
 }
 
 @media (max-width: 760px) {
-    .cardMoto {
-        margin: auto;
-        text-align: center;
-    }
+  .cardMoto {
+    margin: auto;
+    text-align: center;
+  }
 }

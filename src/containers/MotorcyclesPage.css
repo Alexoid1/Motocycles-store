@@ -1,32 +1,32 @@
 .motosComp {
-    display: flex;
-    flex-direction: row;
-    background: rgb(248, 248, 248);
+  display: flex;
+  flex-direction: row;
+  background: rgb(248, 248, 248);
 }
 
 .titleMoto {
-    text-align: center;  
-    padding: 0;
+  text-align: center;
+  padding: 0;
 }
 
-.compCont2 { 
-    padding-top: 100px;
-    width: 83%;
+.compCont2 {
+  padding-top: 100px;
+  width: 83%;
 }
 
 .par {
-    text-align: center;
-    margin-top:  -20px;
-    color: rgb(128, 125, 125);
+  text-align: center;
+  margin-top: -20px;
+  color: rgb(128, 125, 125);
 }
 
 @media (max-width: 1050px) {
-    .motosComp {
-        display: block;
-    }
+  .motosComp {
+    display: block;
+  }
 
-    .compCont2{
-        padding-top: 10px;
-        width: 100%;
-    }
+  .compCont2 {
+    padding-top: 10px;
+    width: 100%;
+  }
 }

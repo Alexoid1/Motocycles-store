@@ -1,5 +1,5 @@
 .butonLogin {
-  background: rgb(151,190,15);
+  background: rgb(151, 190, 15);
   color: white;
   width: 100px;
   height: 40px;
@@ -10,8 +10,9 @@
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   transition: ease-in-out 0.5s;
 }
-.butonChangeForm{
-  background: rgb(151,190,15);
+
+.butonChangeForm {
+  background: rgb(151, 190, 15);
   color: white;
   width: 40px;
   height: 40px;
@@ -24,7 +25,7 @@
 }
 
 .startBoton {
-  background: rgb(151,190,15);
+  background: rgb(151, 190, 15);
   color: white;
   width: 100px;
   height: 35px;
@@ -37,20 +38,22 @@
 }
 
 .mail {
-    margin: 10px;
+  margin: 10px;
 }
-  
-.butonLogin:hover, .startBoton:hover, .butonChangeForm:hover{
+
+.butonLogin:hover,
+.startBoton:hover,
+.butonChangeForm:hover {
   background: yellowgreen;
   transform: scale(1.1);
 }
-  
+
 .loginTitle {
   color: white;
   font-family: 'Big Shoulders Stencil Text', cursive;
   font-size: 50px;
 }
-  
+
 .inputEmail {
   background: none;
   font-family: 'Big Shoulders Stencil Text', cursive;
@@ -60,11 +63,11 @@
   color: white;
   border: none;
 }
-  
+
 .inputEmail::placeholder {
   color: white;
 }
-  
+
 .messageAlert {
   font-size: 18px;
   font-weight: bold;
@@ -85,5 +88,3 @@
 .messagelink:hover {
   text-decoration: underline;
 }
-
-  

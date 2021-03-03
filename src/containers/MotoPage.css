@@ -13,6 +13,7 @@
 .motoInfo p {
   width: 100px;
 }
+
 .motoInfo {
   display: flex;
   flex-direction: row;
@@ -24,7 +25,7 @@
 }
 
 .butonTT {
-  background: rgb(151,190,15);
+  background: rgb(151, 190, 15);
   color: white;
   width: 200px;
   height: 40px;
@@ -37,8 +38,8 @@
 }
 
 .butonTT:hover {
-background: yellowgreen;
-transform: scale(1.1);
+  background: yellowgreen;
+  transform: scale(1.1);
 }
 
 .butonTc {
@@ -50,7 +51,6 @@ transform: scale(1.1);
   .motopage {
     display: flex;
     flex-direction: column;
-   
   }
 
   .nonee {
@@ -58,7 +58,7 @@ transform: scale(1.1);
     margin-right: 10px;
   }
 
-  .tableCont{
+  .tableCont {
     text-align: center;
     margin: auto;
   }
@@ -68,7 +68,7 @@ transform: scale(1.1);
     width: 100%;
   }
 
-  .tableTitle{
+  .tableTitle {
     text-align: center;
   }
 

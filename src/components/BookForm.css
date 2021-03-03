@@ -1,16 +1,15 @@
 
-
 .selectFilter {
-background: rgb(130, 161, 17);
-color: white;
-width: 200px;
-height: 40px;
-font-size: 17px;
-font-weight: bolder;
-border: none;
-border-radius: 50px;
-font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-transition: ease-in-out 0.5s;
+  background: rgb(130, 161, 17);
+  color: white;
+  width: 200px;
+  height: 40px;
+  font-size: 17px;
+  font-weight: bolder;
+  border: none;
+  border-radius: 50px;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  transition: ease-in-out 0.5s;
 }
 
 .filter::placeholder {
@@ -36,13 +35,13 @@ transition: ease-in-out 0.5s;
 }
 
 .formC {
-  
   text-align: center;
 }
 
-.formC input, .formC select{
+.formC input,
+.formC select {
   margin-left: 10px;
-  cursor: pointer;  
+  cursor: pointer;
 }
 
 .btnCont {
@@ -51,16 +50,14 @@ transition: ease-in-out 0.5s;
 }
 
 @media (max-width: 670px) {
-  
   form {
     align-items: center;
     margin: auto;
     text-align: center;
   }
+
   .selectFilter {
-    display:  inline-block;
+    display: inline-block;
     margin: 10px auto;
   }
-
-
 }

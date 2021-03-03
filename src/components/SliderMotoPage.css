@@ -13,7 +13,7 @@
 }
 
 .motoPageC {
-  width:70%;
+  width: 70%;
 }
 
 .dotContainer i {
@@ -22,16 +22,16 @@
 }
 
 .dotContainer i:hover {
-  color: rgb(151,190,15);
+  color: rgb(151, 190, 15);
 }
 
 .anc {
-  background: rgb(151,190,15);
+  background: rgb(151, 190, 15);
 }
 
 @media (max-width: 820px) {
   .motoPageC {
-    width:100%;
+    width: 100%;
   }
 
   .imageI img {

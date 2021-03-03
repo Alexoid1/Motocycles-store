@@ -4,11 +4,12 @@
   width: 100%;
 }
 
-.table1 td, .table1 th {
+.table1 td,
+.table1 th {
   text-align: left;
   padding: 8px;
 }
 
 .table1 tr:nth-child(even) {
-  background-color: #dddddd;
+  background-color: #ddd;
 }

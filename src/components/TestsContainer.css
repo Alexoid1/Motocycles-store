@@ -1,9 +1,9 @@
 .testBoxCont {
-    max-height: 180px;
-    overflow: auto;
+  max-height: 180px;
+  overflow: auto;
 }
 
 .reverse {
-    display: flex;
-    flex-direction: column-reverse;
+  display: flex;
+  flex-direction: column-reverse;
 }
