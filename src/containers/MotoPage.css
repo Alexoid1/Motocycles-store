@@ -19,6 +19,10 @@
   justify-content: space-between;
 }
 
+.nonee {
+  display: none;
+}
+
 .butonTT {
   background: rgb(151,190,15);
   color: white;
@@ -40,4 +44,35 @@ transform: scale(1.1);
 .butonTc {
   margin-top: 40px;
   text-align: center;
+}
+
+@media (max-width: 820px) {
+  .motopage {
+    display: flex;
+    flex-direction: column;
+   
+  }
+
+  .nonee {
+    display: inline-block;
+    margin-right: 10px;
+  }
+
+  .tableCont{
+    text-align: center;
+    margin: auto;
+  }
+
+  .contCta {
+    max-width: 550px;
+    width: 100%;
+  }
+
+  .tableTitle{
+    text-align: center;
+  }
+
+  .butonTT {
+    width: 150px;
+  }
 }

@@ -1,20 +1,4 @@
 
-.formContainer h2 {
-  color: white;
-  font-family: 'Big Shoulders Stencil Text', cursive;
-  letter-spacing: 10px;
-  padding-bottom: 20px;
-  text-align: center;
-}
-
-.formContainer {
-  width:700px;
-}
-
-.formContainer p {
-  color: white;
-  text-align: center;
-}
 
 .selectFilter {
 background: rgb(130, 161, 17);
@@ -64,4 +48,19 @@ transition: ease-in-out 0.5s;
 .btnCont {
   margin: 20px auto;
   text-align: center;
+}
+
+@media (max-width: 670px) {
+  
+  form {
+    align-items: center;
+    margin: auto;
+    text-align: center;
+  }
+  .selectFilter {
+    display:  inline-block;
+    margin: 10px auto;
+  }
+
+
 }

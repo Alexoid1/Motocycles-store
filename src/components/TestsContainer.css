@@ -2,3 +2,8 @@
     max-height: 180px;
     overflow: auto;
 }
+
+.reverse {
+    display: flex;
+    flex-direction: column-reverse;
+}

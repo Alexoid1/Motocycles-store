@@ -85,3 +85,24 @@ nav {
         font-size: 30px;
     }
 }
+
+@media (max-width: 670px) {
+    .navBar ul a li {
+        font-size: 15px;
+    }
+
+    .title2 {
+        margin: 15px 0;
+        font-size: 24px;
+    }
+
+    .sele {
+        display: none;
+    }
+
+    .optionCont ul {
+        margin: auto;
+    }
+    
+}
+

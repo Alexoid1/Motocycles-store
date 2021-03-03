@@ -25,35 +25,35 @@ import {
   CREATE_BOOKMOTO_FAILURE,
   CREATE_BOOKMOTO_REQUEST,
   CREATE_BOOKMOTO_SUCCESS,
- 
+
 } from './types';
 
 const fetchUsersRequest = () => ({
-    type: FETCH_USERS_REQUEST,
-  });
-  
-const fetchUsersSuccess = users => ({
-    type: FETCH_USERS_SUCCESS,
-    payload: users,
+  type: FETCH_USERS_REQUEST,
 });
-  
+
+const fetchUsersSuccess = users => ({
+  type: FETCH_USERS_SUCCESS,
+  payload: users,
+});
+
 const fetchUsersFailure = error => ({
-    type: FETCH_USERS_FAILURE,
-    payload: error,
+  type: FETCH_USERS_FAILURE,
+  payload: error,
 });
 
 const createUsersRequest = () => ({
-    type: CREATE_USERS_REQUEST,
-  });
-  
-export const createUsersSuccess = user => ({
-    type: CREATE_USERS_SUCCESS,
-    payload: user,
+  type: CREATE_USERS_REQUEST,
 });
-  
+
+export const createUsersSuccess = user => ({
+  type: CREATE_USERS_SUCCESS,
+  payload: user,
+});
+
 const createUsersFailure = error => ({
-    type: CREATE_USERS_FAILURE,
-    payload: error,
+  type: CREATE_USERS_FAILURE,
+  payload: error,
 });
 
 const fetchMotosRequest = () => ({
@@ -140,42 +140,40 @@ const createBookMotoFailure = error => ({
   payload: error,
 });
 
-export const fetchUsers = (email) => dispatch => {
-    dispatch(fetchUsersRequest);
-    axios.get('https://motocyclee-store.herokuapp.com/api/v1/users')
-      .then(response => {
-        const user = response.data.find(user=>user.email===email);
-        console.log(user)
-       
-        localStorage.setItem('userMoto', JSON.stringify(user));
-        
-        if(user){
-          
-          window.location.href = '/motorcycles';
-        }
+export const fetchUsers = email => dispatch => {
+  dispatch(fetchUsersRequest);
+  axios.get('https://motocyclee-store.herokuapp.com/api/v1/users')
+    .then(response => {
+      const user = response.data.find(user => user.email === email);
 
-        dispatch(fetchUsersSuccess(user));
+      localStorage.setItem('userMoto', JSON.stringify(user));
+
+      if (user) {
+        window.location.href = '/motorcycles';
+      }
+
+      dispatch(fetchUsersSuccess(user));
     })
-      .catch(error => {
-        dispatch(fetchUsersFailure(error.message));
+    .catch(error => {
+      dispatch(fetchUsersFailure(error.message));
     });
 };
 
 export const createUsers = (name, email) => dispatch => {
-    dispatch(createUsersRequest);
-    axios.post('https://motocyclee-store.herokuapp.com/api/v1/users',
+  dispatch(createUsersRequest);
+  axios.post('https://motocyclee-store.herokuapp.com/api/v1/users',
     {
-      name: name,
-      email: email,
+      name,
+      email,
     })
-      .then(response => {
-        const user = response.data
-        console.log(user)
-        dispatch(createUsersSuccess(user));
-        window.location.href = '/motorcycles';
+    .then(response => {
+      const user = response.data;
+
+      dispatch(createUsersSuccess(user));
+      window.location.href = '/motorcycles';
     })
-      .catch(error => {
-        dispatch(createUsersFailure(error.message));
+    .catch(error => {
+      dispatch(createUsersFailure(error.message));
     });
 };
 
@@ -183,89 +181,87 @@ export const fetchMotos = () => dispatch => {
   dispatch(fetchMotosRequest);
   axios.get('https://motocyclee-store.herokuapp.com/api/v1/motocycles')
     .then(response => {
-      const motos = response.data
+      const motos = response.data;
 
       dispatch(fetchMotosSuccess(motos));
-  })
+    })
     .catch(error => {
       dispatch(fetchMotosFailure(error.message));
-  });
+    });
 };
 
-export const fetchFavourites = (userid) => dispatch => {
+export const fetchFavourites = userid => dispatch => {
   dispatch(fetchFavouritesRequest);
   axios.get(`https://motocyclee-store.herokuapp.com/api/v1/users/${userid}/favourites`)
     .then(response => {
-      const motos = response.data
+      const motos = response.data;
 
       dispatch(fetchFavouritesSuccess(motos));
-  })
+    })
     .catch(error => {
       dispatch(fetchFavouritesFailure(error.message));
-  });
+    });
 };
 
 export const createFavourite = (userid, motoid) => dispatch => {
   dispatch(createFavouriteRequest);
   axios.post(`https://motocyclee-store.herokuapp.com/api/v1/users/${userid}/favourites`,
-  {
-    motocycle_id: motoid,
-  })
+    {
+      motocycle_id: motoid,
+    })
     .then(response => {
-      const user = response.data
-      console.log(user)
+      const user = response.data;
+
       dispatch(createFavouriteSuccess(user));
-      
-  })
+    })
     .catch(error => {
       dispatch(createFavouriteFailure(error.message));
-  });
+    });
 };
 
 export const deleteFavourite = (userid, motoid) => dispatch => {
   dispatch(deleteFavouriteRequest);
   axios.delete(`https://motocyclee-store.herokuapp.com/api/v1/users/${userid}/favourites/${motoid}`)
     .then(response => {
-      const favourites = response.data
-      
+      const favourites = response.data;
+
       dispatch(deleteFavouriteSuccess(favourites));
-      
-  })
+    })
     .catch(error => {
       dispatch(deleteFavouriteFailure(error.message));
-  });
+    });
 };
 
-export const fetchMotoBook = (userid) => dispatch => {
+export const fetchMotoBook = userid => dispatch => {
   dispatch(fetchBookMotoRequest);
   axios.get(`https://motocyclee-store.herokuapp.com/api/v1/users/${userid}/tests`)
     .then(response => {
-      const bookmotos = response.data
+      const bookmotos = response.data;
 
       dispatch(fetchBookMotoSuccess(bookmotos));
-  })
+    })
     .catch(error => {
       dispatch(fetchBookMotoFailure(error.message));
-  });
+    });
 };
 
 export const createMotoBook = (userid, motoid, date, city) => dispatch => {
   dispatch(createBookMotoRequest);
   axios.post(`https://motocyclee-store.herokuapp.com/api/v1/users/${userid}/tests`,
-  {
-    motocycle_id: motoid,
-    testDate: date,
-    city: city
-  })
+    {
+      motocycle_id: motoid,
+      testDate: date,
+      city,
+    })
     .then(response => {
-      const bookmotos = response.data
+      const bookmotos = response.data;
       dispatch(createBookMotoSuccess(bookmotos));
-  })
+    })
     .catch(error => {
       dispatch(createBookMotoFailure(error.message));
-  });
+    });
 };
 
-export const setUser = (user) => dispatch => {
+export const setUser = user => dispatch => {
   dispatch(fetchUsersSuccess(user));
-}
+};

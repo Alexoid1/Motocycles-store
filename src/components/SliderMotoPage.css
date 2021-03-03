@@ -28,3 +28,18 @@
 .anc {
   background: rgb(151,190,15);
 }
+
+@media (max-width: 820px) {
+  .motoPageC {
+    width:100%;
+  }
+
+  .imageI img {
+    margin-top: 10px;
+    height: 290px;
+  }
+
+  .disnone {
+    display: none;
+  }
+}

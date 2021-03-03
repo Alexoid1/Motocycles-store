@@ -90,3 +90,18 @@ a {
 .removeButton:hover {
     transform: scale(1.1);
 }
+
+@media (max-width: 820px) {
+    .cardMoto {
+        width: 200px;
+        height: 290px;
+        margin: 5px;
+    }
+}
+
+@media (max-width: 760px) {
+    .cardMoto {
+        margin: auto;
+        text-align: center;
+    }
+}

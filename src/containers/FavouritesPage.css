@@ -4,7 +4,11 @@
   
   width: 83%;
   height: 100%;
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
+
+}
+
+@media (max-width: 1050px) {
+  .compCont3 {
+    width: 100%;
+  }
 }
