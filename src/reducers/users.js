@@ -8,7 +8,7 @@ import {
 } from '../actions/types';
 
 const initialState = {
-  user: shape,
+  user: null,
   loading: false,
   called: false,
   error: '',

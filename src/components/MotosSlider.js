@@ -34,7 +34,8 @@ const MotosSlider = ({ fetchMotos, motos }) => {
     const lastIndex = index - 3;
 
     if (ind <= index && ind > lastIndex) {
-      (
+      return (
+
         <MotoCard
           key={moto.id}
           id={moto.id}
@@ -60,7 +61,7 @@ const MotosSlider = ({ fetchMotos, motos }) => {
       <div className="sliderContainer">
         <button className="buttonLeft" type="button" onClick={prevSlide}>
           <i className="fa fa-chevron-left fa-2x" aria-hidden="true" />
-          |
+
         </button>
         <div className="header-container">
           {
@@ -70,7 +71,7 @@ const MotosSlider = ({ fetchMotos, motos }) => {
           }
         </div>
         <button className="buttonRight" type="button" onClick={nextSlide}>
-          |
+
           <i className="fa fa-chevron-right fa-2x" aria-hidden="true" />
         </button>
 

@@ -7,28 +7,73 @@ import './LoginForm.css';
 const LoginForm = ({ fetchUsers, createUsers, users }) => {
   const [displays, setDisplays] = useState('inline-block');
   const [displays2, setDisplays2] = useState('none');
-  const [email, setEmail] = useState(users.user.email);
-  const [name, setName] = useState(users.user.name);
+  const [email, setEmail] = useState(null);
+  const [name, setName] = useState(null);
   const [login, setLogin] = useState('Login');
+  const [comp, setComp] = useState('');
 
   const handleChangeDisplay = e => {
     e.preventDefault();
     setDisplays('none');
     setDisplays2('inline-block');
   };
+  const handleSearchUserKeyDown = e => {
+    if (e.keyCode === 13) {
+      const reg = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+      if (reg.test(email)) {
+        fetchUsers(email);
+        if (users.error) {
+          setComp(users.error);
+          setTimeout(() => {
+            setComp('');
+          }, 10000);
+        }
+      } else {
+        setComp('Write a email!');
+
+        setTimeout(() => {
+          setComp('');
+        }, 10000);
+      }
+    }
+  };
 
   const handleSearchUser = e => {
     e.preventDefault();
+    const reg = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+    if (reg.test(email)) {
+      fetchUsers(email);
+      if (users.error) {
+        setComp(users.error);
+        setTimeout(() => {
+          setComp('');
+        }, 10000);
+      }
+    } else {
+      setComp('Write a email!');
 
-    fetchUsers(email);
+      setTimeout(() => {
+        setComp('');
+      }, 10000);
+    }
   };
 
-  const handleCreateUser = e => {
-    e.preventDefault();
-    createUsers(name, email);
+  const handleCreateUser = () => {
+    const reg2 = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+    if (reg2.test(email)) {
+      createUsers(name, email);
+      if (users.error) {
+        setComp(users.error);
+        setTimeout(() => {
+          setComp('');
+        }, 10000);
+      }
+    } else {
+      setComp('Invalid Data');
+    }
   };
 
-  const handleTextChange = e => {
+  const handleEmailChange = e => {
     setEmail(e.target.value);
   };
   const handleNameChange = e => {
@@ -37,6 +82,8 @@ const LoginForm = ({ fetchUsers, createUsers, users }) => {
 
   const handleChangeFormType = e => {
     e.preventDefault();
+    setEmail('');
+    setName('');
     if (login === 'Login') {
       setLogin('Sign up');
     } else {
@@ -44,19 +91,28 @@ const LoginForm = ({ fetchUsers, createUsers, users }) => {
     }
   };
 
-  let comp;
-  if (!email && users.called) {
-    comp = 'User do not Exist.';
-  }
+  const handleChangeFormTypeKey = e => {
+    if (e.keyCode === 38) {
+      setEmail('');
+      setName('');
+      if (login === 'Login') {
+        setLogin('Sign up');
+      } else {
+        setLogin('Login');
+      }
+    }
+  };
 
   let formLog;
   if (login === 'Login') {
     formLog = (
       <div>
         <form style={{ display: displays2 }}>
-          <input className="inputEmail" type="email" placeholder="Write Your Email" onChange={handleTextChange} />
-          <button className="startBoton" type="submit" onClick={handleSearchUser}>Start</button>
+          <input className="inputEmail" type="email" placeholder="Write Your Email" onChange={handleEmailChange} required />
+          <button className="startBoton" type="submit" onClick={handleSearchUser} onKeyDown={handleSearchUserKeyDown}>Login</button>
+          <button className="messagelink" type="button" onClick={handleChangeFormType} onKeyDown={handleChangeFormTypeKey}>Sing Up</button>
         </form>
+
         <p className="messageAlert">{comp}</p>
       </div>
     );
@@ -64,12 +120,14 @@ const LoginForm = ({ fetchUsers, createUsers, users }) => {
     formLog = (
       <div>
         <form style={{ display: displays2 }}>
-          <input className="inputEmail mail" type="text" placeholder="Write Your Name" onChange={handleNameChange} />
+          <input className="inputEmail mail" name="name" type="text" placeholder="Write Your Name" onChange={handleNameChange} value={name} />
           <br />
-          <input className="inputEmail mail" type="email" placeholder="Write Your Email" onChange={handleTextChange} />
+          <input className="inputEmail mail" name="email" type="email" placeholder="Write Your Email" onChange={handleEmailChange} value={email} required />
           <br />
           <button className="startBoton mail" type="submit" onClick={handleCreateUser}>Create</button>
+          <button type="button" className="messagelink" onClick={handleChangeFormType}>Sing In</button>
         </form>
+        <p className="messageAlert">{comp}</p>
       </div>
     );
   }

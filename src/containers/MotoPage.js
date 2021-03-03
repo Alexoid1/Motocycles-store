@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-
+import PropTypes from 'prop-types';
 import SliderMotoPage from '../components/SliderMotoPage';
 import Table2 from '../components/Table2';
 import Table1 from '../components/Table1';
@@ -29,8 +29,8 @@ const MotoPage = ({ motos }) => {
             />
             <Table1 price={moto.price} />
             <div className="butonTc">
-              <Link to="motorcycles" className="nonee"><button className="butonTT">Back</button></Link>
-              <Link to={rout}><button className="butonTT">Book Motorcycle</button></Link>
+              <Link to="motorcycles" className="nonee"><button className="butonTT" type="button">Back</button></Link>
+              <Link to={rout}><button className="butonTT" type="button">Book Motorcycle</button></Link>
 
             </div>
           </div>
@@ -40,9 +40,16 @@ const MotoPage = ({ motos }) => {
   );
 };
 
+MotoPage.propTypes = {
+  motos: PropTypes.arrayOf(PropTypes.object),
+};
+
+MotoPage.defaultProps = {
+  motos: [],
+};
+
 const mapStateToProps = state => ({
   motos: state.motos,
-
 });
 
 export default connect(mapStateToProps)(MotoPage);

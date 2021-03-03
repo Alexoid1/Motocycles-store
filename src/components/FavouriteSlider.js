@@ -39,7 +39,7 @@ const FavouriteSlider = ({ fetchFavourites, motos, users }) => {
   const itemArr = (ind, moto) => {
     const lastIndex = index - 3;
     if (ind <= index && ind > lastIndex) {
-      (
+      return (
         <FavouriteCard
           key={`${moto.id}s`}
           id={moto.id}
@@ -64,10 +64,10 @@ const FavouriteSlider = ({ fetchFavourites, motos, users }) => {
     comp = <div className="loader"><h2 className="error">Not Models added yet</h2></div>;
   } else {
     comp = (
-      <div className="sliderContainer">
+      <div className="sliderContainer" >
         <button className="buttonLeft" type="button" onClick={prevSlide}>
           <i className="fa fa-chevron-left fa-2x" aria-hidden="true" />
-          |
+          .
         </button>
         <div className="header-container">
           {
@@ -77,8 +77,8 @@ const FavouriteSlider = ({ fetchFavourites, motos, users }) => {
           }
         </div>
         <button className="buttonRight" type="button" onClick={nextSlide}>
+          .
           <i className="fa fa-chevron-right fa-2x" aria-hidden="true" />
-          |
         </button>
 
       </div>

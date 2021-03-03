@@ -70,4 +70,20 @@
   font-weight: bold;
   color: rgb(195, 13, 13);
 }
+
+.messagelink {
+  font-size: 14px;
+  font-weight: bold;
+  color: aqua;
+  cursor: pointer;
+  background: none;
+  border: none;
+  display: block;
+  margin: auto;
+}
+
+.messagelink:hover {
+  text-decoration: underline;
+}
+
   

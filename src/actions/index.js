@@ -149,10 +149,11 @@ export const fetchUsers = email => dispatch => {
       localStorage.setItem('userMoto', JSON.stringify(user));
 
       if (user) {
+        dispatch(fetchUsersSuccess(user));
         window.location.href = '/motorcycles';
+      } else {
+        dispatch(fetchUsersFailure('user do not exist'));
       }
-
-      dispatch(fetchUsersSuccess(user));
     })
     .catch(error => {
       dispatch(fetchUsersFailure(error.message));
@@ -167,10 +168,14 @@ export const createUsers = (name, email) => dispatch => {
       email,
     })
     .then(response => {
-      const user = response.data;
-
-      dispatch(createUsersSuccess(user));
-      window.location.href = '/motorcycles';
+      const user = response.data.name;
+      localStorage.setItem('userMoto', JSON.stringify(response.data));
+      if (user) {
+        dispatch(createUsersSuccess(response.data));
+        window.location.href = '/motorcycles';
+      } else {
+        dispatch(createUsersFailure('This email is in use, write another email!'));
+      }
     })
     .catch(error => {
       dispatch(createUsersFailure(error.message));
