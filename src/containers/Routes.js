@@ -3,6 +3,7 @@ import SignUpPage from './SignUpPage';
 import MotorcyclesPage from './MotorcyclesPage';
 import FavouritesPage from './FavouritesPage';
 import MotoPage from './MotoPage';
+import NotFound from './NotFound';
 import AsideMenu from '../components/AsideMenu';
 import TestMotoPage from './TestMotoPage';
 import './MotorcyclesPage.css';
@@ -11,6 +12,7 @@ const Routes = () => (
   <Switch>
     <Route exact path="/" component={SignUpPage} />
     <Route exact path="/Test-Moto/:id" component={TestMotoPage} />
+    <Route path="*" component={NotFound} />
     <div className="motosComp">
       <AsideMenu />
       <Route exact path="/motorcycles" component={MotorcyclesPage} />
