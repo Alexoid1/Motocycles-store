@@ -12,12 +12,15 @@
 
 .navBar ul li {
   text-align: center;
-  height: 43px;
   font-size: 18px;
+  height: 63px;
   font-weight: bolder;
   font-family: 'Roboto', sans-serif;
-  padding-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
 
 .navBar ul li:hover {
   background: rgb(151, 190, 15);
@@ -87,7 +90,7 @@ nav {
 }
 
 @media (max-width: 670px) {
-  .navBar ul a li {
+  .navBar ul li a {
     font-size: 15px;
   }
 
