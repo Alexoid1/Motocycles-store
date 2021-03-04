@@ -19,7 +19,7 @@ This is a motorcycles store that show different models of motorcycles to book a 
 - ES6.
 
 ## Live Demo
-[Live Demo Link](https://super-heroess.herokuapp.com)
+[Live Demo Link](https://motorcycles-store.herokuapp.com)
 
 
 ### Test
