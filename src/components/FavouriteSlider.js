@@ -35,7 +35,7 @@ const FavouriteSlider = ({ fetchFavourites, motos, users }) => {
       setIndex(index - 1);
     }
   };
-
+  /* eslint-disable consistent-return */
   const itemArr = (ind, moto) => {
     const lastIndex = index - 3;
     if (ind <= index && ind > lastIndex) {
@@ -64,7 +64,7 @@ const FavouriteSlider = ({ fetchFavourites, motos, users }) => {
     comp = <div className="loader"><h2 className="error">Not Models added yet</h2></div>;
   } else {
     comp = (
-      <div className="sliderContainer" >
+      <div className="sliderContainer">
         <button className="buttonLeft" type="button" onClick={prevSlide}>
           <i className="fa fa-chevron-left fa-2x" aria-hidden="true" />
           .

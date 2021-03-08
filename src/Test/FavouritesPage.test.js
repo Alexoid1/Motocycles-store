@@ -8,7 +8,6 @@ import store from '../reducers/index';
 
 const renderer = new ShallowRenderer();
 
-
 it('should render FavouritesPage correctly', () => {
   renderer.render(
     <Provider store={store}>

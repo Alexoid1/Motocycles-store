@@ -8,7 +8,6 @@ const FavouritesPage = () => (
     <FavouriteSlider />
     <h1 className="titleMoto">TESTS RIDES</h1>
     <TestsContainer />
-
   </div>
 );
 

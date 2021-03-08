@@ -14,10 +14,10 @@ const Slider = ({
 );
 
 Slider.propTypes = {
-  background1: PropTypes.string.isRequired,
-  background2: PropTypes.string.isRequired,
-  background3: PropTypes.string.isRequired,
-  background4: PropTypes.string.isRequired,
+  background1: PropTypes.func.isRequired,
+  background2: PropTypes.func.isRequired,
+  background3: PropTypes.func.isRequired,
+  background4: PropTypes.func.isRequired,
 };
 
 export default Slider;

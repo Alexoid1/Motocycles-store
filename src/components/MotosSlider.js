@@ -29,7 +29,7 @@ const MotosSlider = ({ fetchMotos, motos }) => {
       setIndex(index - 1);
     }
   };
-
+  /* eslint-disable consistent-return */
   const itemArr = (ind, moto) => {
     const lastIndex = index - 3;
 

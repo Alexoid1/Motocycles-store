@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import {
@@ -24,10 +24,51 @@ const AsideMenu = ({ setUser }) => {
           </div>
 
           <ul>
-            <Link to="/motorcycles"><li>MODELS</li></Link>
-            <Link to="/favourites"><li>FAVORITES</li></Link>
-            <Link to="/Test-Moto/1"><li>TEST DRIVE</li></Link>
-            <Link to="/"><li>LOG OUT</li></Link>
+            <li>
+              <NavLink
+                className="linkAside"
+                to="/motorcycles"
+                exact
+                activeStyle={{
+                  backgroundColor: 'rgb(151, 190, 15)', color: 'white', display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%', width: '100%',
+                }}
+              >
+                MODELS
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/favourites"
+                exact
+                activeStyle={{
+                  backgroundColor: 'rgb(151, 190, 15)', color: 'white', display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%', width: '100%',
+                }}
+              >
+                FAVORITES
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/Test-Moto/1"
+                exact
+                activeStyle={{
+                  backgroundColor: 'rgb(151, 190, 15)', color: 'white', display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%', width: '100%',
+                }}
+              >
+                TEST DRIVE
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/"
+                exact
+                activeStyle={{
+                  backgroundColor: 'rgb(151, 190, 15)', color: 'white', display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%', width: '100%',
+                }}
+              >
+                LOG OUT
+              </NavLink>
+            </li>
           </ul>
         </div>
         <div className="iconCont">
