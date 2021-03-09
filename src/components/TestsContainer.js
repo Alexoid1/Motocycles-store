@@ -11,8 +11,10 @@ import {
 } from '../actions/index';
 
 const TestsContainer = ({
-  fetchMotoBook, bookmoto, motos, user,
+  fetchMotoBook, bookmoto, motos,
 }) => {
+  const user = JSON.parse(localStorage.getItem('userMoto'));
+
   useEffect(() => {
     fetchMotoBook(user.id);
   }, []);
@@ -56,11 +58,6 @@ TestsContainer.propTypes = {
   fetchMotoBook: PropTypes.func.isRequired,
   bookmoto: PropTypes.arrayOf(PropTypes.object),
   motos: PropTypes.arrayOf(PropTypes.object),
-  user: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    email: PropTypes.string.isRequired,
-    id: PropTypes.number.isRequired,
-  }),
 };
 
 const mapDispatchToProps = dispatch => ({
@@ -70,7 +67,6 @@ const mapDispatchToProps = dispatch => ({
 const mapStateToProps = state => ({
   bookmoto: state.bookmoto,
   motos: state.motos.motos,
-  user: state.users.user,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TestsContainer);

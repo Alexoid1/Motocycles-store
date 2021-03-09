@@ -8,16 +8,12 @@ import {
   fetchFavourites,
 } from '../actions/index';
 
-const FavouriteSlider = ({ fetchFavourites, motos, users }) => {
+const FavouriteSlider = ({ fetchFavourites, motos }) => {
   const [index, setIndex] = useState(2);
   const user = JSON.parse(localStorage.getItem('userMoto'));
 
   useEffect(() => {
-    if (users.user.id) {
-      fetchFavourites(users.user.id);
-    } else {
-      fetchFavourites(user.id);
-    }
+    fetchFavourites(user.id);
   }, []);
 
   const nextSlide = () => {
@@ -90,16 +86,6 @@ const FavouriteSlider = ({ fetchFavourites, motos, users }) => {
 FavouriteSlider.propTypes = {
   fetchFavourites: PropTypes.func.isRequired,
   motos: PropTypes.arrayOf(PropTypes.object),
-  users: PropTypes.shape({
-    user: PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      email: PropTypes.string.isRequired,
-      id: PropTypes.number.isRequired,
-    }),
-    loading: PropTypes.bool.isRequired,
-    called: PropTypes.bool.isRequired,
-    error: PropTypes.string.isRequired,
-  }),
 };
 
 const mapDispatchToProps = dispatch => ({
