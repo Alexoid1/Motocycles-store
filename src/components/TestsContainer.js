@@ -11,8 +11,10 @@ import {
 } from '../actions/index';
 
 const TestsContainer = ({
-  fetchMotoBook, bookmoto, motos, user,
+  fetchMotoBook, bookmoto, motos
 }) => {
+  const user = JSON.parse(localStorage.getItem('userMoto'));
+
   useEffect(() => {
     fetchMotoBook(user.id);
   }, []);
@@ -70,7 +72,6 @@ const mapDispatchToProps = dispatch => ({
 const mapStateToProps = state => ({
   bookmoto: state.bookmoto,
   motos: state.motos.motos,
-  user: state.users.user,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TestsContainer);
