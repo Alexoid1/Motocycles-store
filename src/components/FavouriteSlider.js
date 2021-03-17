@@ -12,13 +12,7 @@ const FavouriteSlider = ({ fetchFavourites, motos }) => {
   const [index, setIndex] = useState(2);
 
   useEffect(() => {
-<<<<<<< HEAD
-    
-    fetchFavourites(user.id);
-    
-=======
     fetchFavourites();
->>>>>>> feature-motocyles
   }, []);
 
   const nextSlide = () => {
