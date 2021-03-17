@@ -1,18 +1,16 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import {
-  setUser,
-} from '../actions/index';
+  logoutUser,
+} from '../actions/userActions';
 import './AsideMenu.css';
 
-const AsideMenu = ({ setUser }) => {
-  const user = JSON.parse(localStorage.getItem('userMoto'));
-
-  useEffect(() => {
-    setUser(user);
-  }, []);
+const AsideMenu = ({ logoutUser }) => {
+  const handleLogout = () => {
+    logoutUser();
+  };
 
   return (
     <div className="navBar">
@@ -59,6 +57,7 @@ const AsideMenu = ({ setUser }) => {
             </li>
             <li>
               <NavLink
+                onClick={handleLogout}
                 to="/"
                 exact
                 activeStyle={{
@@ -84,11 +83,11 @@ const AsideMenu = ({ setUser }) => {
 };
 
 AsideMenu.propTypes = {
-  setUser: PropTypes.func.isRequired,
+  logoutUser: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = dispatch => ({
-  setUser: user => dispatch(setUser(user)),
+  logoutUser: () => dispatch(logoutUser),
 });
 
 export default connect(null, mapDispatchToProps)(AsideMenu);

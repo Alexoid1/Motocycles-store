@@ -5,11 +5,14 @@ import {
   CREATE_USERS_FAILURE,
   CREATE_USERS_REQUEST,
   CREATE_USERS_SUCCESS,
-} from '../actions/types';
+  LOGIN_USER,
+  LOGOUT_USER,
+} from '../actions/userTypes';
 
 const initialState = {
   user: null,
   token: localStorage.getItem('motoToken'),
+  login: false,
   loading: false,
   called: false,
   error: '',
@@ -54,6 +57,16 @@ const usersReducer = (state = initialState, action) => {
         ...state,
         loading: false,
         error: action.payload,
+      };
+    case LOGIN_USER:
+      return {
+        ...state,
+        login: true,
+      };
+    case LOGOUT_USER:
+      return {
+        ...state,
+        login: false,
       };
     default:
       return state;

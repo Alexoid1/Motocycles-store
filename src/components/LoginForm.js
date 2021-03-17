@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { fetchUsers, createUsers } from '../actions/index';
+import { useHistory } from 'react-router-dom';
+import { fetchUsers, createUsers } from '../actions/userActions';
 import './LoginForm.css';
 
 const LoginForm = ({ fetchUsers, createUsers, users }) => {
@@ -12,6 +13,11 @@ const LoginForm = ({ fetchUsers, createUsers, users }) => {
   const [password, setPassword] = useState(null);
   const [login, setLogin] = useState('Login');
   const [comp, setComp] = useState('');
+  const history = useHistory();
+
+  if (users.login) {
+    history.push('/motorcycles');
+  }
 
   const handleChangeDisplay = e => {
     e.preventDefault();
@@ -43,7 +49,6 @@ const LoginForm = ({ fetchUsers, createUsers, users }) => {
     e.preventDefault();
     const reg = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
     if (reg.test(email)) {
-      console.log(email, password)
       fetchUsers(email, password);
       if (users.error) {
         setComp(users.error);
@@ -113,8 +118,10 @@ const LoginForm = ({ fetchUsers, createUsers, users }) => {
     formLog = (
       <div>
         <form style={{ display: displays2 }}>
-          <input className="inputEmail" type="email" placeholder="Write Your Email" onChange={handleEmailChange} required /><br/>
-          <input className="inputEmail" type="password" placeholder="Write Your Password" onChange={handlePasswordChange} required /><br/>
+          <input className="inputEmail" type="email" placeholder="Write Your Email" onChange={handleEmailChange} required />
+          <br />
+          <input className="inputEmail" type="password" placeholder="Write Your Password" onChange={handlePasswordChange} required />
+          <br />
           <button className="startBoton" type="submit" onClick={handleSearchUser} onKeyDown={handleSearchUserKeyDown}>Login</button>
           <button className="messagelink" type="button" onClick={handleChangeFormType} onKeyDown={handleChangeFormTypeKey}>Sing Up</button>
         </form>
@@ -131,7 +138,7 @@ const LoginForm = ({ fetchUsers, createUsers, users }) => {
           <input className="inputEmail mail" name="email" type="email" placeholder="Write Your Email" onChange={handleEmailChange} value={email} required />
           <br />
           <input className="inputEmail mail" type="password" placeholder="Write Your Password" onChange={handlePasswordChange} required />
-          <br/>
+          <br />
           <button className="startBoton mail" type="submit" onClick={handleCreateUser}>Create</button>
           <button type="button" className="messagelink" onClick={handleChangeFormType}>Sing In</button>
         </form>
@@ -169,6 +176,7 @@ LoginForm.propTypes = {
     loading: PropTypes.bool.isRequired,
     called: PropTypes.bool.isRequired,
     error: PropTypes.string.isRequired,
+    login: PropTypes.bool.isRequired,
   }),
 };
 

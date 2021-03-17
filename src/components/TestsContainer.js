@@ -13,7 +13,6 @@ import {
 const TestsContainer = ({
   fetchMotoBook, bookmoto, motos,
 }) => {
-
   useEffect(() => {
     fetchMotoBook();
   }, []);

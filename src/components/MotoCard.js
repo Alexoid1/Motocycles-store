@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import {
   createFavourite,
-} from '../actions/index';
+} from '../actions/favouriteActions';
 import './MotoCard.css';
 
 const MotoCard = ({
@@ -55,7 +55,7 @@ MotoCard.defaultProps = {
 };
 
 const mapDispatchToProps = dispatch => ({
-  createFavourite: (motoid) => dispatch(createFavourite(motoid)),
+  createFavourite: motoid => dispatch(createFavourite(motoid)),
 });
 
 const mapStateToProps = state => ({

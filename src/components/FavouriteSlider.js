@@ -6,11 +6,10 @@ import './MotosSlider.css';
 import FavouriteCard from './FavouriteCard';
 import {
   fetchFavourites,
-} from '../actions/index';
+} from '../actions/favouriteActions';
 
 const FavouriteSlider = ({ fetchFavourites, motos }) => {
   const [index, setIndex] = useState(2);
-  
 
   useEffect(() => {
     fetchFavourites();
