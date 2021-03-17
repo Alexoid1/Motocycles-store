@@ -54,7 +54,11 @@ const TestsContainer = ({
 
 TestsContainer.propTypes = {
   fetchMotoBook: PropTypes.func.isRequired,
-  bookmoto: PropTypes.arrayOf(PropTypes.object),
+  bookmoto: PropTypes.shape({
+    bookmoto: PropTypes.arrayOf(PropTypes.object),
+    loading: PropTypes.bool.isRequired,
+    error: PropTypes.string.isRequired,
+  }),
   motos: PropTypes.arrayOf(PropTypes.object),
 };
 

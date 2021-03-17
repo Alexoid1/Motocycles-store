@@ -84,7 +84,11 @@ const FavouriteSlider = ({ fetchFavourites, motos }) => {
 
 FavouriteSlider.propTypes = {
   fetchFavourites: PropTypes.func.isRequired,
-  motos: PropTypes.arrayOf(PropTypes.object),
+  motos: PropTypes.shape({
+    motos: PropTypes.arrayOf(PropTypes.object),
+    error: PropTypes.string.isRequired,
+    loading: PropTypes.bool.isRequired,
+  }),
 };
 
 const mapDispatchToProps = dispatch => ({
