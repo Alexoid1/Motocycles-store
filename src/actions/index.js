@@ -228,7 +228,6 @@ export const createFavourite = (motoid) => dispatch => {
     })
     .then(response => {
       const motosf = response.data;
-      console.log(motosf)
       dispatch(createFavouriteSuccess(motosf));
     })
     .catch(error => {
@@ -236,9 +235,13 @@ export const createFavourite = (motoid) => dispatch => {
     });
 };
 
-export const deleteFavourite = (userid, motoid) => dispatch => {
+export const deleteFavourite = (motoid) => dispatch => {
   dispatch(deleteFavouriteRequest);
-  axios.delete(`https://motocyclee-store.herokuapp.com/api/v1/users/${userid}/favourites/${motoid}`)
+  console.log(motoid)
+  axios.delete(`/favourites/${motoid}`,
+  {
+    motocycle_id: motoid,
+  })
     .then(response => {
       const favourites = response.data;
 
@@ -264,9 +267,9 @@ export const fetchMotoBook = () => dispatch => {
     });
 };
 
-export const createMotoBook = (userid, motoid, date, city) => dispatch => {
+export const createMotoBook = (motoid, date, city) => dispatch => {
   dispatch(createBookMotoRequest);
-  axios.post(`https://motocyclee-store.herokuapp.com/api/v1/users/${userid}/tests`,
+  axios.post(`/tests`,
     {
       motocycle_id: motoid,
       testDate: date,

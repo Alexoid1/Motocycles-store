@@ -11,8 +11,6 @@ const BookForm = ({ createMotoBook }) => {
   const { id } = useParams();
   const history = useHistory();
 
-  const user = JSON.parse(localStorage.getItem('userMoto'));
-
   const [city, setCity] = useState('Quito');
   const [selectedDate, setSelectedDate] = useState(null);
   const motoCategories = [
@@ -63,7 +61,7 @@ const BookForm = ({ createMotoBook }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    createMotoBook(user.id, id, selectedDate.toString(), city);
+    createMotoBook(id, selectedDate.toString(), city);
     history.push('/motorcycles');
   };
 
@@ -125,8 +123,7 @@ BookForm.propTypes = {
 };
 
 const mapDispatchToProps = dispatch => ({
-  createMotoBook: (userid, motoid, date, city) => dispatch(createMotoBook(
-    userid,
+  createMotoBook: (motoid, date, city) => dispatch(createMotoBook(
     motoid,
     date,
     city,

@@ -8,14 +8,13 @@ import {
 import './MotoCard.css';
 
 const FavouriteCard = ({
-  id, image, name, model, user, deleteFavourite,
+  id, image, name, model, deleteFavourite,
 }) => {
   const rou = `/motorcycles/${id}`;
 
   const handleRemove = e => {
     e.preventDefault();
-
-    deleteFavourite(user.id * 1, id * 1);
+    deleteFavourite(id * 1);
   };
 
   return (
@@ -41,26 +40,16 @@ FavouriteCard.propTypes = {
   image: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   model: PropTypes.string.isRequired,
-  user: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    email: PropTypes.string.isRequired,
-    id: PropTypes.number.isRequired,
-  }),
   deleteFavourite: PropTypes.func.isRequired,
 };
 
-FavouriteCard.defaultProps = {
-  user: {},
-};
 
 const mapDispatchToProps = dispatch => ({
-  deleteFavourite: (userid, motoid) => dispatch(deleteFavourite(userid, motoid)),
+  deleteFavourite: (motoid) => dispatch(deleteFavourite(motoid)),
 });
 
 const mapStateToProps = state => ({
   favourites: state.favourites,
-  user: state.users.user,
-
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(FavouriteCard);
