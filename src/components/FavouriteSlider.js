@@ -10,10 +10,10 @@ import {
 
 const FavouriteSlider = ({ fetchFavourites, motos }) => {
   const [index, setIndex] = useState(2);
-  const user = JSON.parse(localStorage.getItem('userMoto'));
+  
 
   useEffect(() => {
-    fetchFavourites(user.id);
+    fetchFavourites();
   }, []);
 
   const nextSlide = () => {
@@ -89,7 +89,7 @@ FavouriteSlider.propTypes = {
 };
 
 const mapDispatchToProps = dispatch => ({
-  fetchFavourites: userid => dispatch(fetchFavourites(userid)),
+  fetchFavourites: () => dispatch(fetchFavourites()),
 });
 
 const mapStateToProps = state => ({

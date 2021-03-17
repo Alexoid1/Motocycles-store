@@ -20,7 +20,6 @@ const AsideMenu = ({ setUser }) => {
         <div className="optionCont">
           <div className="sele">
             <h1 className="title2">MOTORCYCLE</h1>
-            <p className="name">{user.name}</p>
           </div>
 
           <ul>

@@ -13,10 +13,9 @@ import {
 const TestsContainer = ({
   fetchMotoBook, bookmoto, motos,
 }) => {
-  const user = JSON.parse(localStorage.getItem('userMoto'));
 
   useEffect(() => {
-    fetchMotoBook(user.id);
+    fetchMotoBook();
   }, []);
 
   let comp2;
@@ -61,7 +60,7 @@ TestsContainer.propTypes = {
 };
 
 const mapDispatchToProps = dispatch => ({
-  fetchMotoBook: userid => dispatch(fetchMotoBook(userid)),
+  fetchMotoBook: () => dispatch(fetchMotoBook()),
 });
 
 const mapStateToProps = state => ({

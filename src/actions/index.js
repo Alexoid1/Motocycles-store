@@ -140,13 +140,20 @@ const createBookMotoFailure = error => ({
   payload: error,
 });
 
-export const fetchUsers = email => dispatch => {
+export const fetchUsers = (email, password) => dispatch => {
   dispatch(fetchUsersRequest);
-  axios.get('https://motocyclee-store.herokuapp.com/api/v1/users')
-    .then(response => {
-      const user = response.data.find(user => user.email === email);
+  
+  axios.post('/login',{
 
-      localStorage.setItem('userMoto', JSON.stringify(user));
+     email,
+     password
+    }
+    )
+    .then(response => {
+      const user = response.data;
+      console.log(user)
+
+      localStorage.setItem('motoToken', user.token);
 
       if (user) {
         dispatch(fetchUsersSuccess(user));
@@ -160,16 +167,18 @@ export const fetchUsers = email => dispatch => {
     });
 };
 
-export const createUsers = (name, email) => dispatch => {
+export const createUsers = (name, email, password) => dispatch => {
   dispatch(createUsersRequest);
-  axios.post('https://motocyclee-store.herokuapp.com/api/v1/users',
+  
+  axios.post('/register',
     {
       name,
       email,
+      password
     })
     .then(response => {
-      const user = response.data.name;
-      localStorage.setItem('userMoto', JSON.stringify(response.data));
+      const user = response.data;
+      localStorage.setItem('motoToken', user.token);
       if (user) {
         dispatch(createUsersSuccess(response.data));
         window.location.href = '/motorcycles';
@@ -184,9 +193,10 @@ export const createUsers = (name, email) => dispatch => {
 
 export const fetchMotos = () => dispatch => {
   dispatch(fetchMotosRequest);
-  axios.get('https://motocyclee-store.herokuapp.com/api/v1/motocycles')
+  axios.get('/motocycles')
     .then(response => {
       const motos = response.data;
+      
 
       dispatch(fetchMotosSuccess(motos));
     })
@@ -195,12 +205,14 @@ export const fetchMotos = () => dispatch => {
     });
 };
 
-export const fetchFavourites = userid => dispatch => {
+export const fetchFavourites = () => dispatch => {
   dispatch(fetchFavouritesRequest);
-  axios.get(`https://motocyclee-store.herokuapp.com/api/v1/users/${userid}/favourites`)
+  
+  
+  axios.get(`/favourites`,{ mode: 'cors' })
     .then(response => {
       const motos = response.data;
-
+      console.log(motos)
       dispatch(fetchFavouritesSuccess(motos));
     })
     .catch(error => {
@@ -208,16 +220,16 @@ export const fetchFavourites = userid => dispatch => {
     });
 };
 
-export const createFavourite = (userid, motoid) => dispatch => {
+export const createFavourite = (motoid) => dispatch => {
   dispatch(createFavouriteRequest);
-  axios.post(`https://motocyclee-store.herokuapp.com/api/v1/users/${userid}/favourites`,
+  axios.post(`/favourites`,
     {
       motocycle_id: motoid,
     })
     .then(response => {
-      const user = response.data;
-
-      dispatch(createFavouriteSuccess(user));
+      const motosf = response.data;
+      console.log(motosf)
+      dispatch(createFavouriteSuccess(motosf));
     })
     .catch(error => {
       dispatch(createFavouriteFailure(error.message));
@@ -237,9 +249,11 @@ export const deleteFavourite = (userid, motoid) => dispatch => {
     });
 };
 
-export const fetchMotoBook = userid => dispatch => {
+export const fetchMotoBook = () => dispatch => {
   dispatch(fetchBookMotoRequest);
-  axios.get(`https://motocyclee-store.herokuapp.com/api/v1/users/${userid}/tests`)
+  
+  
+  axios.get(`/tests`,{mode: 'cors'})
     .then(response => {
       const bookmotos = response.data;
 

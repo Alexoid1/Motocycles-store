@@ -9,6 +9,7 @@ import {
 
 const initialState = {
   user: null,
+  token: localStorage.getItem('motoToken'),
   loading: false,
   called: false,
   error: '',

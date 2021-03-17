@@ -9,6 +9,7 @@ const LoginForm = ({ fetchUsers, createUsers, users }) => {
   const [displays2, setDisplays2] = useState('none');
   const [email, setEmail] = useState(null);
   const [name, setName] = useState(null);
+  const [password, setPassword] = useState(null);
   const [login, setLogin] = useState('Login');
   const [comp, setComp] = useState('');
 
@@ -42,7 +43,8 @@ const LoginForm = ({ fetchUsers, createUsers, users }) => {
     e.preventDefault();
     const reg = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
     if (reg.test(email)) {
-      fetchUsers(email);
+      console.log(email, password)
+      fetchUsers(email, password);
       if (users.error) {
         setComp(users.error);
         setTimeout(() => {
@@ -61,7 +63,7 @@ const LoginForm = ({ fetchUsers, createUsers, users }) => {
   const handleCreateUser = () => {
     const reg2 = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
     if (reg2.test(email)) {
-      createUsers(name, email);
+      createUsers(name, email, password);
       if (users.error) {
         setComp(users.error);
         setTimeout(() => {
@@ -78,6 +80,9 @@ const LoginForm = ({ fetchUsers, createUsers, users }) => {
   };
   const handleNameChange = e => {
     setName(e.target.value);
+  };
+  const handlePasswordChange = e => {
+    setPassword(e.target.value);
   };
 
   const handleChangeFormType = e => {
@@ -108,7 +113,8 @@ const LoginForm = ({ fetchUsers, createUsers, users }) => {
     formLog = (
       <div>
         <form style={{ display: displays2 }}>
-          <input className="inputEmail" type="email" placeholder="Write Your Email" onChange={handleEmailChange} required />
+          <input className="inputEmail" type="email" placeholder="Write Your Email" onChange={handleEmailChange} required /><br/>
+          <input className="inputEmail" type="password" placeholder="Write Your Password" onChange={handlePasswordChange} required /><br/>
           <button className="startBoton" type="submit" onClick={handleSearchUser} onKeyDown={handleSearchUserKeyDown}>Login</button>
           <button className="messagelink" type="button" onClick={handleChangeFormType} onKeyDown={handleChangeFormTypeKey}>Sing Up</button>
         </form>
@@ -124,6 +130,8 @@ const LoginForm = ({ fetchUsers, createUsers, users }) => {
           <br />
           <input className="inputEmail mail" name="email" type="email" placeholder="Write Your Email" onChange={handleEmailChange} value={email} required />
           <br />
+          <input className="inputEmail mail" type="password" placeholder="Write Your Password" onChange={handlePasswordChange} required />
+          <br/>
           <button className="startBoton mail" type="submit" onClick={handleCreateUser}>Create</button>
           <button type="button" className="messagelink" onClick={handleChangeFormType}>Sing In</button>
         </form>
@@ -169,8 +177,8 @@ LoginForm.defaultProps = {
 };
 
 const mapDispatchToProps = dispatch => ({
-  fetchUsers: email => dispatch(fetchUsers(email)),
-  createUsers: (name, email) => dispatch(createUsers(name, email)),
+  fetchUsers: (email, password) => dispatch(fetchUsers(email, password)),
+  createUsers: (name, email, password) => dispatch(createUsers(name, email, password)),
 });
 
 const mapStateToProps = state => ({
