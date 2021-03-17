@@ -53,8 +53,6 @@ const FavouriteSlider = ({ fetchFavourites, motos }) => {
         <DotLoader />
       </div>
     );
-  } else if (motos.error) {
-    comp = <h2 className="error">{motos.error}</h2>;
   } else if (motos.motos.length === 0) {
     comp = <div className="loader"><h2 className="error">Not Models added yet</h2></div>;
   } else {
