@@ -6,16 +6,19 @@ import './MotosSlider.css';
 import FavouriteCard from './FavouriteCard';
 import {
   fetchFavourites,
-} from '../actions/index';
+} from '../actions/favouriteActions';
 
 const FavouriteSlider = ({ fetchFavourites, motos }) => {
   const [index, setIndex] = useState(2);
-  const user = JSON.parse(localStorage.getItem('userMoto'));
 
   useEffect(() => {
+<<<<<<< HEAD
     
     fetchFavourites(user.id);
     
+=======
+    fetchFavourites();
+>>>>>>> feature-motocyles
   }, []);
 
   const nextSlide = () => {
@@ -87,11 +90,19 @@ const FavouriteSlider = ({ fetchFavourites, motos }) => {
 
 FavouriteSlider.propTypes = {
   fetchFavourites: PropTypes.func.isRequired,
+<<<<<<< HEAD
   motos: PropTypes.arrayOf(PropTypes.object),
+=======
+  motos: PropTypes.shape({
+    motos: PropTypes.arrayOf(PropTypes.object),
+    error: PropTypes.string.isRequired,
+    loading: PropTypes.bool.isRequired,
+  }),
+>>>>>>> feature-motocyles
 };
 
 const mapDispatchToProps = dispatch => ({
-  fetchFavourites: userid => dispatch(fetchFavourites(userid)),
+  fetchFavourites: () => dispatch(fetchFavourites()),
 });
 
 const mapStateToProps = state => ({

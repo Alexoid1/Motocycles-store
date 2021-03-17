@@ -13,10 +13,10 @@ import {
 const TestsContainer = ({
   fetchMotoBook, bookmoto, motos
 }) => {
-  const user = JSON.parse(localStorage.getItem('userMoto'));
+
 
   useEffect(() => {
-    fetchMotoBook(user.id);
+    fetchMotoBook();
   }, []);
 
   let comp2;
@@ -56,17 +56,16 @@ const TestsContainer = ({
 
 TestsContainer.propTypes = {
   fetchMotoBook: PropTypes.func.isRequired,
-  bookmoto: PropTypes.arrayOf(PropTypes.object),
-  motos: PropTypes.arrayOf(PropTypes.object),
-  user: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    email: PropTypes.string.isRequired,
-    id: PropTypes.number.isRequired,
+  bookmoto: PropTypes.shape({
+    bookmoto: PropTypes.arrayOf(PropTypes.object),
+    loading: PropTypes.bool.isRequired,
+    error: PropTypes.string.isRequired,
   }),
+  motos: PropTypes.arrayOf(PropTypes.object),
 };
 
 const mapDispatchToProps = dispatch => ({
-  fetchMotoBook: userid => dispatch(fetchMotoBook(userid)),
+  fetchMotoBook: () => dispatch(fetchMotoBook()),
 });
 
 const mapStateToProps = state => ({

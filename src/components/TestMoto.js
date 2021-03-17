@@ -26,18 +26,7 @@ const TestMoto = ({
 );
 
 TestMoto.propTypes = {
-  motocycle: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    image: PropTypes.string.isRequired,
-    image2: PropTypes.string.isRequired,
-    image3: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    model: PropTypes.string.isRequired,
-    engine: PropTypes.string.isRequired,
-    speed: PropTypes.number.isRequired,
-    maxpower: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-  }),
+  motocycle: PropTypes.instanceOf(Object),
   city: PropTypes.string.isRequired,
   date: PropTypes.string.isRequired,
 };
