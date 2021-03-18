@@ -8,8 +8,7 @@ import {
 import './AsideMenu.css';
 
 const AsideMenu = ({ logoutUser }) => {
-  const handleLogout = e => {
-    e.preventDefault();
+  const handleLogout = () => {
     logoutUser();
   };
 
