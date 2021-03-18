@@ -10,7 +10,7 @@ import './MotoPage.css';
 const MotoPage = ({ motos }) => {
   const { id } = useParams();
   const rout = `/Test-Moto/${id}`;
-  const moto = motos.motos.filter(moto => moto.id === id * 1)[0];
+  const moto = motos.filter(moto => moto.id === id * 1)[0];
   return (
 
     <div className="motopage">
