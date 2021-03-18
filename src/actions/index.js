@@ -251,7 +251,7 @@ export const createFavourite = motoid => dispatch => {
     })
     .then(response => {
       const motosf = response.data;
-      console.log('all fine')
+
       dispatch(createFavouriteSuccess(motosf));
     })
     .catch(error => {

@@ -13,9 +13,7 @@ const MotoCard = ({
   const rou = `/motorcycles/${id}`;
 
   const handleLike = () => {
-    
     createFavourite(id * 1);
-    console.log('working')
   };
 
   return (
