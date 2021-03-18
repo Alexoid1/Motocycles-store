@@ -47,39 +47,35 @@ const FavouriteSlider = ({ fetchFavourites, motos }) => {
   };
 
   let comp;
-  console.log(motos.loading)
   if (motos.loading) {
     comp = (
       <div className="loader">
         <DotLoader />
       </div>
     );
-  
-  }else{ 
-    if (motos.motos.length > 0 ) {
-      comp = (
-        <div className="sliderContainer">
-          <button className="buttonLeft" type="button" onClick={prevSlide}>
-            <i className="fa fa-chevron-left fa-2x" aria-hidden="true" />
-            .
-          </button>
-          <div className="header-container">
-            {
+  } else if (motos.motos.length > 0) {
+    comp = (
+      <div className="sliderContainer">
+        <button className="buttonLeft" type="button" onClick={prevSlide}>
+          <i className="fa fa-chevron-left fa-2x" aria-hidden="true" />
+          .
+        </button>
+        <div className="header-container">
+          {
               motos.motos.map((moto, ind) => (
                 itemArr(ind, moto)
               ))
             }
-          </div>
-          <button className="buttonRight" type="button" onClick={nextSlide}>
-            .
-            <i className="fa fa-chevron-right fa-2x" aria-hidden="true" />
-          </button>
-
         </div>
-      );
-    }else if (motos.motos.length === 0 ) {
-      comp = <div className="loader"><h2 className="error">Not Models added yet</h2></div>;
-    }
+        <button className="buttonRight" type="button" onClick={nextSlide}>
+          .
+          <i className="fa fa-chevron-right fa-2x" aria-hidden="true" />
+        </button>
+
+      </div>
+    );
+  } else if (motos.motos.length === 0) {
+    comp = <div className="loader"><h2 className="error">Not Models added yet</h2></div>;
   }
   return comp;
 };

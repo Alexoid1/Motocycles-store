@@ -9,7 +9,7 @@ import './AsideMenu.css';
 
 const AsideMenu = ({ logoutUser }) => {
   const handleLogout = e => {
-    e.preventDefault()
+    e.preventDefault();
     logoutUser();
   };
 

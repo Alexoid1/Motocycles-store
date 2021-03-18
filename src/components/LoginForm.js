@@ -14,7 +14,7 @@ const LoginForm = ({ fetchUsers, createUsers, users }) => {
   const [login, setLogin] = useState('Login');
   const [comp, setComp] = useState('');
   const history = useHistory();
-  
+
   if (users.login) {
     history.push('/motorcycles');
   }
