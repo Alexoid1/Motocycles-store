@@ -4,12 +4,11 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import {
   logoutUser,
-} from '../actions/userActions';
+} from '../actions/index';
 import './AsideMenu.css';
 
 const AsideMenu = ({ logoutUser }) => {
-  const handleLogout = e => {
-    e.preventDefault();
+  const handleLogout = () => {
     logoutUser();
   };
 

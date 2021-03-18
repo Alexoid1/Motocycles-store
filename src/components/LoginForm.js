@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
-import { fetchUsers, createUsers } from '../actions/userActions';
+import { fetchUsers, createUsers } from '../actions/index';
 import './LoginForm.css';
 
 const LoginForm = ({ fetchUsers, createUsers, users }) => {
