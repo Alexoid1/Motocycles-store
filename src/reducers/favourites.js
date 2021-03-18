@@ -6,7 +6,7 @@ import {
   CREATE_FAVOURITE_REQUEST,
   CREATE_FAVOURITE_SUCCESS,
 
-} from '../actions/favouriteTypes';
+} from '../actions/types';
 
 const initialState = {
   motos: [],

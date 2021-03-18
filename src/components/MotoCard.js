@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import {
   createFavourite,
-} from '../actions/favouriteActions';
+} from '../actions/index';
 import './MotoCard.css';
 
 const MotoCard = ({
@@ -12,9 +12,10 @@ const MotoCard = ({
 }) => {
   const rou = `/motorcycles/${id}`;
 
-  const handleLike = e => {
-    e.preventDefault();
+  const handleLike = () => {
+    
     createFavourite(id * 1);
+    console.log('working')
   };
 
   return (

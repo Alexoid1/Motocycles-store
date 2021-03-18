@@ -7,7 +7,7 @@ import {
   CREATE_USERS_SUCCESS,
   LOGIN_USER,
   LOGOUT_USER,
-} from '../actions/userTypes';
+} from '../actions/types';
 
 const initialState = {
   user: null,
