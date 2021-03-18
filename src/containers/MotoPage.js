@@ -49,7 +49,7 @@ MotoPage.defaultProps = {
 };
 
 const mapStateToProps = state => ({
-  motos: state.motos,
+  motos: state.motos.motos,
 });
 
 export default connect(mapStateToProps)(MotoPage);

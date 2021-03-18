@@ -10,6 +10,7 @@ import {
 const initialState = {
   bookmoto: [],
   loading: false,
+  faaa: [],
   error: '',
 };
 

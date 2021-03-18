@@ -53,9 +53,7 @@ const FavouriteSlider = ({ fetchFavourites, motos }) => {
         <DotLoader />
       </div>
     );
-  } else if (motos.motos.length === 0) {
-    comp = <div className="loader"><h2 className="error">Not Models added yet</h2></div>;
-  } else {
+  } else if (motos.motos.length > 0) {
     comp = (
       <div className="sliderContainer">
         <button className="buttonLeft" type="button" onClick={prevSlide}>
@@ -64,10 +62,10 @@ const FavouriteSlider = ({ fetchFavourites, motos }) => {
         </button>
         <div className="header-container">
           {
-            motos.motos.map((moto, ind) => (
-              itemArr(ind, moto)
-            ))
-          }
+              motos.motos.map((moto, ind) => (
+                itemArr(ind, moto)
+              ))
+            }
         </div>
         <button className="buttonRight" type="button" onClick={nextSlide}>
           .
@@ -76,6 +74,8 @@ const FavouriteSlider = ({ fetchFavourites, motos }) => {
 
       </div>
     );
+  } else if (motos.motos.length === 0) {
+    comp = <div className="loader"><h2 className="error">Not Models added yet</h2></div>;
   }
   return comp;
 };
