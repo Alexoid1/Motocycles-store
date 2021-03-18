@@ -31,6 +31,7 @@ const usersReducer = (state = initialState, action) => {
         loading: false,
         called: true,
         user: action.payload,
+        token: action.payload.token,
         error: '',
       };
     case FETCH_USERS_FAILURE:
@@ -50,6 +51,7 @@ const usersReducer = (state = initialState, action) => {
         loading: false,
         called: true,
         user: action.payload,
+        token: action.payload.token,
         error: '',
       };
     case CREATE_USERS_FAILURE:

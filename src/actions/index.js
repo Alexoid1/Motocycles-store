@@ -1,8 +1,9 @@
 import axios from 'axios';
+import fetchConfig from '../helpers/fetch';
+import baseUrl from '../helpers/base-url';
 
 import {
   FETCH_MOTOS_FAILURE,
-  FETCH_MOTOS_REQUEST,
   FETCH_MOTOS_SUCCESS,
   FETCH_BOOKMOTO_FAILURE,
   FETCH_BOOKMOTO_REQUEST,
@@ -11,15 +12,12 @@ import {
   CREATE_BOOKMOTO_REQUEST,
   CREATE_BOOKMOTO_SUCCESS,
   FETCH_USERS_FAILURE,
-  FETCH_USERS_REQUEST,
   FETCH_USERS_SUCCESS,
   CREATE_USERS_FAILURE,
-  CREATE_USERS_REQUEST,
   CREATE_USERS_SUCCESS,
   LOGIN_USER,
   LOGOUT_USER,
   FETCH_FAVOURITES_FAILURE,
-  FETCH_FAVOURITES_REQUEST,
   FETCH_FAVOURITES_SUCCESS,
   CREATE_FAVOURITE_FAILURE,
   CREATE_FAVOURITE_REQUEST,
@@ -27,9 +25,7 @@ import {
 
 } from './types';
 
-const fetchMotosRequest = () => ({
-  type: FETCH_MOTOS_REQUEST,
-});
+
 
 const fetchMotosSuccess = motos => ({
   type: FETCH_MOTOS_SUCCESS,
@@ -69,9 +65,6 @@ const createBookMotoFailure = error => ({
   payload: error,
 });
 
-const fetchUsersRequest = () => ({
-  type: FETCH_USERS_REQUEST,
-});
 
 const fetchUsersSuccess = users => ({
   type: FETCH_USERS_SUCCESS,
@@ -83,9 +76,7 @@ const fetchUsersFailure = error => ({
   payload: error,
 });
 
-const createUsersRequest = () => ({
-  type: CREATE_USERS_REQUEST,
-});
+
 
 export const createUsersSuccess = user => ({
   type: CREATE_USERS_SUCCESS,
@@ -105,11 +96,8 @@ export const logoutUser = () => ({
   type: LOGOUT_USER,
 });
 
-const fetchFavouritesRequest = () => ({
-  type: FETCH_FAVOURITES_REQUEST,
-});
 
-const fetchFavouritesSuccess = motos => ({
+export const fetchFavouritesSuccess = motos => ({
   type: FETCH_FAVOURITES_SUCCESS,
   payload: motos,
 });
@@ -134,22 +122,21 @@ const createFavouriteFailure = error => ({
 });
 
 export const fetchMotos = () => dispatch => {
-  dispatch(fetchMotosRequest());
-  axios.get('/motocycles')
-    .then(response => {
-      const motos = response.data;
-
-      dispatch(fetchMotosSuccess(motos));
-    })
-    .catch(error => {
-      dispatch(fetchMotosFailure(error.message));
+  fetch(`${baseUrl}/motocycles`)
+    .then(res => {
+      if (res.ok) {
+        res.json().then(res => {
+          console.log(res)
+          dispatch(fetchMotosSuccess(res));
+        });
+      }
     });
 };
 
 export const fetchMotoBook = () => dispatch => {
   dispatch(fetchBookMotoRequest);
 
-  axios.get('/tests', { mode: 'cors' })
+  axios.get('/tests', fetchConfig())
     .then(response => {
       const bookmotos = response.data;
 
@@ -178,69 +165,57 @@ export const createMotoBook = (motoid, date, city) => dispatch => {
 };
 
 export const fetchUsers = (email, password) => dispatch => {
-  dispatch(fetchUsersRequest);
-
-  axios.post('/login', {
-
-    email,
-    password,
+ 
+  fetch(`${baseUrl}/login`, {
+    ...fetchConfig(),
+    method: 'POST',
+    body: JSON.stringify({
+      email: email,
+      password: password
+      
+    }),
   })
-    .then(response => {
-      const user = response.data;
-
-      localStorage.setItem('motoToken', user.token);
-
-      if (user) {
-        dispatch(fetchUsersSuccess(user));
+    .then(res => {
+      if (res.ok) {
+        res.json().then(jsonRes => {
+          localStorage.setItem('motoToken', jsonRes.token);
+          dispatch(fetchUsersSuccess(jsonRes))
+        });
         dispatch(loginUser());
       } else {
-        dispatch(fetchUsersFailure('user do not exist'));
+        dispatch(logoutUser());
       }
+      return res;
     })
-    .catch(error => {
-      dispatch(fetchUsersFailure(error.message));
-    });
 };
 
 export const createUsers = (name, email, password) => dispatch => {
-  dispatch(createUsersRequest);
-
-  axios.post('/register',
-    {
-      name,
-      email,
-      password,
-    })
-    .then(response => {
-      const user = response.data;
-      localStorage.setItem('motoToken', user.token);
-      if (user) {
-        dispatch(createUsersSuccess(response.data));
+  fetch(`${baseUrl}/register`, {
+    ...fetchConfig(),
+    method: 'POST',
+    body: JSON.stringify({
+      name: name,
+      email: email,
+      password: password
+      
+    }),
+  })
+    .then(res => {
+      if (res.ok) {
+        res.json().then(jsonRes => {
+          localStorage.setItem('motoToken', jsonRes.token);
+          dispatch(createUsersSuccess(jsonRes))
+        });
         dispatch(loginUser());
       } else {
-        dispatch(createUsersFailure('This email is in use, write another email!'));
+        dispatch(logoutUser());
       }
+      return res;
     })
-    .catch(error => {
-      dispatch(createUsersFailure(error.message));
-    });
 };
 
 export const setUser = user => dispatch => {
   dispatch(fetchUsersSuccess(user));
-};
-
-export const fetchFavourites = () => dispatch => {
-  dispatch(fetchFavouritesRequest);
-
-  axios.get('/favourites', { mode: 'cors' })
-    .then(response => {
-      const motos = response.data;
-      dispatch(fetchFavouritesSuccess(motos));
-    })
-    .catch(error => {
-      dispatch(fetchFavouritesFailure(error.message));
-    });
 };
 
 export const createFavourite = motoid => dispatch => {

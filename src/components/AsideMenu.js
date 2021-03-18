@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import {
@@ -8,8 +8,12 @@ import {
 import './AsideMenu.css';
 
 const AsideMenu = ({ logoutUser }) => {
-  const handleLogout = () => {
+  const history = useHistory();
+  const handleLogout = (e) => {
+    e.preventDefault()
     logoutUser();
+    localStorage.clear()
+    history.push('/');
   };
 
   return (
@@ -56,16 +60,13 @@ const AsideMenu = ({ logoutUser }) => {
               </NavLink>
             </li>
             <li>
-              <NavLink
+              <button
                 onClick={handleLogout}
-                to="/"
-                exact
-                activeStyle={{
-                  backgroundColor: 'rgb(151, 190, 15)', color: 'white', display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%', width: '100%',
-                }}
+                
+                
               >
                 LOG OUT
-              </NavLink>
+              </button>
             </li>
           </ul>
         </div>

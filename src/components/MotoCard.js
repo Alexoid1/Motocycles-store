@@ -2,18 +2,35 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import fetchConfig from '../helpers/fetch';
+import baseUrl from '../helpers/base-url';
 import {
   createFavourite,
+  fetchFavouritesSuccess
 } from '../actions/index';
 import './MotoCard.css';
 
 const MotoCard = ({
-  id, image, name, model, createFavourite,
+  id, image, name, model, createFavourite,fetchFavouritesSuccess
 }) => {
   const rou = `/motorcycles/${id}`;
 
   const handleLike = () => {
-    createFavourite(id * 1);
+    
+    fetch(`${baseUrl}/favourites`, {
+      ...fetchConfig(),
+      method: 'POST',
+      body: JSON.stringify({
+        motocycle_id: id,
+        
+      }),
+    })
+      .then(res => {
+        if (res.ok) {
+          console.log(res)
+          // dispatch(fetchFavouritesSuccess(res.json()))
+        } 
+      });
   };
 
   return (
@@ -28,7 +45,7 @@ const MotoCard = ({
       </Link>
       <div className="iconsC">
         <div>
-          <i className="fa fa-thumbs-up" aria-hidden="true" onClick={handleLike} />
+          <button className="fa fa-thumbs-up" type="button" aria-hidden="true" onClick={handleLike} >click</button>
         </div>
       </div>
     </div>
@@ -55,6 +72,7 @@ MotoCard.defaultProps = {
 
 const mapDispatchToProps = dispatch => ({
   createFavourite: motoid => dispatch(createFavourite(motoid)),
+  fetchFavouritesSuccess: (motosf) => dispatch(fetchFavouritesSuccess(motosf))
 });
 
 const mapStateToProps = state => ({

@@ -45,7 +45,7 @@ const favouritesReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        favourites: action.payload,
+        motos: action.payload,
         error: '',
       };
     case CREATE_FAVOURITE_FAILURE:

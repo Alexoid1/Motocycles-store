@@ -18,7 +18,7 @@ const LoginForm = ({ fetchUsers, createUsers, users }) => {
   if (users.login) {
     history.push('/motorcycles');
   }
-
+  console.log(users.token)
   const handleChangeDisplay = e => {
     e.preventDefault();
     setDisplays('none');
@@ -28,7 +28,7 @@ const LoginForm = ({ fetchUsers, createUsers, users }) => {
     if (e.keyCode === 13) {
       const reg = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
       if (reg.test(email)) {
-        fetchUsers(email);
+        fetchUsers(email, password);
         if (users.error) {
           setComp(users.error);
           setTimeout(() => {

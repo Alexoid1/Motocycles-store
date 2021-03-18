@@ -4,19 +4,28 @@ import { connect } from 'react-redux';
 import DotLoader from 'react-spinners/ClipLoader';
 import './MotosSlider.css';
 import FavouriteCard from './FavouriteCard';
-import {
-  fetchFavourites,
-} from '../actions/index';
+import fetchConfig from '../helpers/fetch';
+import baseUrl from '../helpers/base-url';
+
 
 const FavouriteSlider = ({ fetchFavourites, motos }) => {
   const [index, setIndex] = useState(2);
+  const [motof, setMotof] = useState([])
 
   useEffect(() => {
-    fetchFavourites();
+    fetch(`${baseUrl}/favourites`, fetchConfig())
+    .then(res => {
+      if (res.ok) {
+        res.json().then(jsonRes => {
+          setMotof(jsonRes)
+          
+        });
+      }
+    });
   }, []);
 
   const nextSlide = () => {
-    if (index + 1 === motos.motos.length) {
+    if (index + 1 === motof.length) {
       setIndex(2);
     } else {
       setIndex(index + 1);
@@ -25,7 +34,7 @@ const FavouriteSlider = ({ fetchFavourites, motos }) => {
 
   const prevSlide = () => {
     if (index - 3 < 0) {
-      setIndex(motos.motos.length - 1);
+      setIndex(motof.length - 1);
     } else {
       setIndex(index - 1);
     }
@@ -53,7 +62,7 @@ const FavouriteSlider = ({ fetchFavourites, motos }) => {
         <DotLoader />
       </div>
     );
-  } else if (motos.motos.length > 0) {
+  } else if (motof.length > 0) {
     comp = (
       <div className="sliderContainer">
         <button className="buttonLeft" type="button" onClick={prevSlide}>
@@ -62,7 +71,7 @@ const FavouriteSlider = ({ fetchFavourites, motos }) => {
         </button>
         <div className="header-container">
           {
-              motos.motos.map((moto, ind) => (
+              motof.map((moto, ind) => (
                 itemArr(ind, moto)
               ))
             }
@@ -74,7 +83,7 @@ const FavouriteSlider = ({ fetchFavourites, motos }) => {
 
       </div>
     );
-  } else if (motos.motos.length === 0) {
+  } else if (motof.length === 0) {
     comp = <div className="loader"><h2 className="error">Not Models added yet</h2></div>;
   }
   return comp;
@@ -89,12 +98,10 @@ FavouriteSlider.propTypes = {
   }),
 };
 
-const mapDispatchToProps = dispatch => ({
-  fetchFavourites: () => dispatch(fetchFavourites()),
-});
+
 
 const mapStateToProps = state => ({
   motos: state.favourites,
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(FavouriteSlider);
+export default connect(mapStateToProps)(FavouriteSlider);
