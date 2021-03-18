@@ -42,8 +42,12 @@ export const fetchFavourites = () => dispatch => {
 
   axios.get('/favourites', { mode: 'cors' })
     .then(response => {
-      const motos = response.data;
-      dispatch(fetchFavouritesSuccess(motos));
+      
+        const motos = response.data;
+        console.log(response)
+        dispatch(fetchFavouritesSuccess(motos));
+     
+      
     })
     .catch(error => {
       dispatch(fetchFavouritesFailure(error.message));
@@ -57,8 +61,11 @@ export const createFavourite = motoid => dispatch => {
       motocycle_id: motoid,
     })
     .then(response => {
-      const motosf = response.data;
-      dispatch(createFavouriteSuccess(motosf));
+     
+        const motosf = response.data;
+        dispatch(createFavouriteSuccess(motosf));
+      
+      
     })
     .catch(error => {
       dispatch(createFavouriteFailure(error.message));

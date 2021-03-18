@@ -56,7 +56,7 @@ const createBookMotoFailure = error => ({
 });
 
 export const fetchMotos = () => dispatch => {
-  dispatch(fetchMotosRequest);
+  dispatch(fetchMotosRequest());
   axios.get('/motocycles')
     .then(response => {
       const motos = response.data;

@@ -14,7 +14,7 @@ const LoginForm = ({ fetchUsers, createUsers, users }) => {
   const [login, setLogin] = useState('Login');
   const [comp, setComp] = useState('');
   const history = useHistory();
-
+  
   if (users.login) {
     history.push('/motorcycles');
   }
@@ -133,9 +133,9 @@ const LoginForm = ({ fetchUsers, createUsers, users }) => {
     formLog = (
       <div>
         <form style={{ display: displays2 }}>
-          <input className="inputEmail mail" name="name" type="text" placeholder="Write Your Name" onChange={handleNameChange} value={name} />
+          <input className="inputEmail mail" name="name" type="text" placeholder="Write Your Name" onChange={handleNameChange} />
           <br />
-          <input className="inputEmail mail" name="email" type="email" placeholder="Write Your Email" onChange={handleEmailChange} value={email} required />
+          <input className="inputEmail mail" name="email" type="email" placeholder="Write Your Email" onChange={handleEmailChange} required />
           <br />
           <input className="inputEmail mail" type="password" placeholder="Write Your Password" onChange={handlePasswordChange} required />
           <br />
