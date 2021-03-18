@@ -25,7 +25,7 @@ const TestsContainer = ({
       </div>
     );
   } else if (bookmoto.error) {
-    comp2 = <h2 className="error">{bookmoto.error}</h2>;
+    comp2 = <div className="loader"><h2 className="error">No Test-Drive added yet</h2></div>;
   } else if (bookmoto.bookmoto.length === 0) {
     comp2 = <div className="loader"><h2 className="error">No Test-Drive added yet</h2></div>;
   } else {
