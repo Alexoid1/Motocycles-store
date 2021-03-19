@@ -94,8 +94,8 @@ const FavouriteSlider = ({ motos, fetchFavouriteFail, fetchFavourite }) => {
 };
 
 FavouriteSlider.propTypes = {
-  fetchFavourites: PropTypes.func.isRequired,
-  fetchFavouriteFail: PropTypes.func.isRequired,
+  fetchFavourites: PropTypes.func,
+  fetchFavouriteFail: PropTypes.func,
   motos: PropTypes.shape({
     motos: PropTypes.arrayOf(PropTypes.object),
     error: PropTypes.string.isRequired,

@@ -57,16 +57,7 @@ MotoCard.propTypes = {
   image: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   model: PropTypes.string.isRequired,
-  user: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    email: PropTypes.string.isRequired,
-    id: PropTypes.number.isRequired,
-  }),
   createFavourite: PropTypes.func.isRequired,
-};
-
-MotoCard.defaultProps = {
-  user: {},
 };
 
 const mapDispatchToProps = dispatch => ({
