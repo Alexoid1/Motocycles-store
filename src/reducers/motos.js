@@ -1,6 +1,5 @@
 import {
   FETCH_MOTOS_FAILURE,
-  FETCH_MOTOS_REQUEST,
   FETCH_MOTOS_SUCCESS,
 } from '../actions/types';
 
@@ -12,11 +11,6 @@ const initialState = {
 
 const motosReducer = (state = initialState, action) => {
   switch (action.type) {
-    case FETCH_MOTOS_REQUEST:
-      return {
-        ...state,
-        loading: true,
-      };
     case FETCH_MOTOS_SUCCESS:
       return {
         ...state,

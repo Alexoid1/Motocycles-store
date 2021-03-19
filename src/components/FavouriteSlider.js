@@ -4,11 +4,12 @@ import { connect } from 'react-redux';
 import DotLoader from 'react-spinners/ClipLoader';
 import './MotosSlider.css';
 import FavouriteCard from './FavouriteCard';
+import { fetchFavourite, fetchFavouriteFail } from '../actions/index';
 import fetchConfig from '../helpers/fetch';
 import baseUrl from '../helpers/base-url';
 
 
-const FavouriteSlider = ({ fetchFavourites, motos }) => {
+const FavouriteSlider = ({ motos, fetchFavouriteFail, fetchFavourite }) => {
   const [index, setIndex] = useState(2);
   const [motof, setMotof] = useState([])
 
@@ -18,9 +19,13 @@ const FavouriteSlider = ({ fetchFavourites, motos }) => {
       if (res.ok) {
         res.json().then(jsonRes => {
           setMotof(jsonRes)
-          
+          fetchFavourite(jsonRes)
         });
+      }else{
+        fetchFavouriteFail('and error while fetch favourites')
       }
+    }).catch((error)=> {
+      fetchFavouriteFail(error)
     });
   }, []);
 
@@ -97,11 +102,14 @@ FavouriteSlider.propTypes = {
     loading: PropTypes.bool.isRequired,
   }),
 };
-
+const mapDispatchToProps = dispatch => ({
+  fetchFavourite: (motoid) => dispatch(fetchFavourite(motoid)),
+  fetchFavouriteFail: (error) => dispatch(fetchFavouriteFail(error))
+});
 
 
 const mapStateToProps = state => ({
   motos: state.favourites,
 });
 
-export default connect(mapStateToProps)(FavouriteSlider);
+export default connect(mapStateToProps, mapDispatchToProps)(FavouriteSlider);

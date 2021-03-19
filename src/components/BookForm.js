@@ -4,6 +4,8 @@ import DatePicker from 'react-datepicker';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { createMotoBook } from '../actions/index';
+import fetchConfig from '../helpers/fetch';
+import baseUrl from '../helpers/base-url';
 import 'react-datepicker/dist/react-datepicker.css';
 import './BookForm.css';
 
@@ -61,7 +63,23 @@ const BookForm = ({ createMotoBook }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    createMotoBook(id, selectedDate.toString(), city);
+    fetch(`${baseUrl}/tests`, {
+      ...fetchConfig(),
+      method: 'POST',
+      body: JSON.stringify({
+        motocycle_id: id,
+        testDate: selectedDate.toString(),
+        city: city
+        
+      }),
+    })
+      .then(res => {
+        if (res.ok) {
+          console.log(res)
+          // dispatch(fetchFavouritesSuccess(res.json()))
+        } 
+      });
+    
     history.push('/motorcycles');
   };
 

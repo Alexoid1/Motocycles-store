@@ -1,8 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import DotLoader from 'react-spinners/ClipLoader';
 import PropTypes from 'prop-types';
 import TestMoto from './TestMoto';
+import fetchConfig from '../helpers/fetch';
+import baseUrl from '../helpers/base-url';
 import './TestsContainer.css';
 
 import {
@@ -11,12 +13,19 @@ import {
 } from '../actions/index';
 
 const TestsContainer = ({
-  fetchMotoBook, bookmoto, motos
+  bookmoto, motos
 }) => {
-
+  const [bokmoto, setBokmoto] = useState([])
 
   useEffect(() => {
-    fetchMotoBook();
+    fetch(`${baseUrl}/tests`, fetchConfig())
+    .then(res => {
+      if (res.ok) {
+        res.json().then(jsonRes => {
+          setBokmoto(jsonRes)
+        });
+      }
+    });
   }, []);
 
   let comp2;
@@ -26,9 +35,7 @@ const TestsContainer = ({
         <DotLoader />
       </div>
     );
-  } else if (bookmoto.error) {
-    comp2 = <div className="loader"><h2 className="error">No Test-Drive added yet</h2></div>;
-  } else if (bookmoto.bookmoto.length === 0) {
+  } else if (bokmoto.length === 0) {
     comp2 = <div className="loader"><h2 className="error">No Test-Drive added yet</h2></div>;
   } else {
     comp2 = (
@@ -36,7 +43,7 @@ const TestsContainer = ({
 
         <div className="reverse">
           {
-            bookmoto.bookmoto.map(book => (
+            bokmoto.map(book => (
               <TestMoto
                 key={`${book.id}c`}
                 id={book.id}

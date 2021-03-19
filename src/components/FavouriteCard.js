@@ -36,4 +36,4 @@ const mapStateToProps = state => ({
   favourites: state.favourites,
 });
 
-export default connect(mapStateToProps, null)(FavouriteCard);
+export default connect(mapStateToProps)(FavouriteCard);

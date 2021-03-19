@@ -19,8 +19,6 @@ import {
   LOGOUT_USER,
   FETCH_FAVOURITES_FAILURE,
   FETCH_FAVOURITES_SUCCESS,
-  CREATE_FAVOURITE_FAILURE,
-  CREATE_FAVOURITE_REQUEST,
   CREATE_FAVOURITE_SUCCESS,
 
 } from './types';
@@ -107,30 +105,26 @@ const fetchFavouritesFailure = error => ({
   payload: error,
 });
 
-const createFavouriteRequest = () => ({
-  type: CREATE_FAVOURITE_REQUEST,
-});
-
 const createFavouriteSuccess = moto => ({
   type: CREATE_FAVOURITE_SUCCESS,
   payload: moto,
 });
 
-const createFavouriteFailure = error => ({
-  type: CREATE_FAVOURITE_FAILURE,
-  payload: error,
-});
 
 export const fetchMotos = () => dispatch => {
   fetch(`${baseUrl}/motocycles`)
     .then(res => {
       if (res.ok) {
         res.json().then(res => {
-          console.log(res)
+         
           dispatch(fetchMotosSuccess(res));
         });
+      }else{
+        fetchMotosFailure('error fetch motos');
       }
-    });
+    }).catch(function(error) {
+      dispatch(fetchMotosFailure(error))
+    })
 };
 
 export const fetchMotoBook = () => dispatch => {
@@ -184,8 +178,11 @@ export const fetchUsers = (email, password) => dispatch => {
         dispatch(loginUser());
       } else {
         dispatch(logoutUser());
+        dispatch(fetchUsersFailure('Wrong email or password'))
       }
       return res;
+    }).catch((error)=>{
+      fetchUsersFailure(error)
     })
 };
 
@@ -208,9 +205,12 @@ export const createUsers = (name, email, password) => dispatch => {
         });
         dispatch(loginUser());
       } else {
+        
         dispatch(logoutUser());
       }
       return res;
+    }).catch((error)=>{
+      dispatch(createUsersFailure(error))
     })
 };
 
@@ -218,18 +218,14 @@ export const setUser = user => dispatch => {
   dispatch(fetchUsersSuccess(user));
 };
 
-export const createFavourite = motoid => dispatch => {
-  dispatch(createFavouriteRequest);
-  axios.post('/favourites',
-    {
-      motocycle_id: motoid,
-    })
-    .then(response => {
-      const motosf = response.data;
+export const fetchFavourite = motoid => dispatch => {
+  dispatch(fetchFavouritesSuccess(motoid));
+};
 
-      dispatch(createFavouriteSuccess(motosf));
-    })
-    .catch(error => {
-      dispatch(createFavouriteFailure(error.message));
-    });
+export const fetchFavouriteFail = motoid => dispatch => {
+  dispatch(fetchFavouritesFailure(motoid));
+};
+
+export const createFavourite = motoid => dispatch => {
+  dispatch(createFavouriteSuccess(motoid));
 };

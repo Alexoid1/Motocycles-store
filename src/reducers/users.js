@@ -1,16 +1,14 @@
 import {
   FETCH_USERS_FAILURE,
-  FETCH_USERS_REQUEST,
   FETCH_USERS_SUCCESS,
   CREATE_USERS_FAILURE,
-  CREATE_USERS_REQUEST,
   CREATE_USERS_SUCCESS,
   LOGIN_USER,
   LOGOUT_USER,
 } from '../actions/types';
 
 const initialState = {
-  user: null,
+  user: {},
   token: localStorage.getItem('motoToken'),
   login: false,
   loading: false,
@@ -20,11 +18,6 @@ const initialState = {
 
 const usersReducer = (state = initialState, action) => {
   switch (action.type) {
-    case FETCH_USERS_REQUEST:
-      return {
-        ...state,
-        loading: true,
-      };
     case FETCH_USERS_SUCCESS:
       return {
         ...state,
@@ -39,11 +32,6 @@ const usersReducer = (state = initialState, action) => {
         ...state,
         loading: false,
         error: action.payload,
-      };
-    case CREATE_USERS_REQUEST:
-      return {
-        ...state,
-        loading: true,
       };
     case CREATE_USERS_SUCCESS:
       return {

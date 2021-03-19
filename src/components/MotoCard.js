@@ -6,12 +6,11 @@ import fetchConfig from '../helpers/fetch';
 import baseUrl from '../helpers/base-url';
 import {
   createFavourite,
-  fetchFavouritesSuccess
 } from '../actions/index';
 import './MotoCard.css';
 
 const MotoCard = ({
-  id, image, name, model, createFavourite,fetchFavouritesSuccess
+  id, image, name, model
 }) => {
   const rou = `/motorcycles/${id}`;
 
@@ -27,9 +26,10 @@ const MotoCard = ({
     })
       .then(res => {
         if (res.ok) {
-          console.log(res)
-          // dispatch(fetchFavouritesSuccess(res.json()))
-        } 
+          createFavourite(true)
+        }else{
+          createFavourite(false)
+        }
       });
   };
 
@@ -72,7 +72,7 @@ MotoCard.defaultProps = {
 
 const mapDispatchToProps = dispatch => ({
   createFavourite: motoid => dispatch(createFavourite(motoid)),
-  fetchFavouritesSuccess: (motosf) => dispatch(fetchFavouritesSuccess(motosf))
+
 });
 
 const mapStateToProps = state => ({
