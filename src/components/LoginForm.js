@@ -10,7 +10,7 @@ import {
 import './LoginForm.css';
 
 const LoginForm = ({
-  fetchUsers, createUsers, fetchUsersFail, createUsersFail, users,
+  fetchUsers, createUsers, fetchUsersFail, createUsersFail,
 }) => {
   const [displays, setDisplays] = useState('inline-block');
   const [displays2, setDisplays2] = useState('none');
@@ -85,7 +85,7 @@ const LoginForm = ({
             createUsers(jsonRes);
           });
         } else {
-          setComp('Wrong email!');
+          setComp('Wrong data!');
           createUsersFail('Write a email!');
         }
       }).catch(error => {
@@ -112,12 +112,6 @@ const LoginForm = ({
     const reg2 = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
     if (reg2.test(email)) {
       createUserf();
-      if (users.error) {
-        setComp(users.error);
-        setTimeout(() => {
-          setComp('');
-        }, 10000);
-      }
     } else {
       setComp('Invalid Data');
     }
@@ -212,21 +206,6 @@ LoginForm.propTypes = {
   createUsers: PropTypes.func.isRequired,
   fetchUsersFail: PropTypes.func.isRequired,
   createUsersFail: PropTypes.func.isRequired,
-  users: PropTypes.shape({
-    user: PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      email: PropTypes.string.isRequired,
-      id: PropTypes.number.isRequired,
-    }),
-    loading: PropTypes.bool.isRequired,
-    called: PropTypes.bool.isRequired,
-    error: PropTypes.string.isRequired,
-    login: PropTypes.bool.isRequired,
-  }),
-};
-
-LoginForm.defaultProps = {
-  users: {},
 };
 
 const mapDispatchToProps = dispatch => ({
