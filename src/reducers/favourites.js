@@ -14,7 +14,6 @@ const initialState = {
 
 const favouritesReducer = (state = initialState, action) => {
   switch (action.type) {
-   
     case FETCH_FAVOURITES_SUCCESS:
       return {
         ...state,

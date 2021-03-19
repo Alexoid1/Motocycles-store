@@ -8,25 +8,24 @@ import { fetchFavourite, fetchFavouriteFail } from '../actions/index';
 import fetchConfig from '../helpers/fetch';
 import baseUrl from '../helpers/base-url';
 
-
 const FavouriteSlider = ({ motos, fetchFavouriteFail, fetchFavourite }) => {
   const [index, setIndex] = useState(2);
-  const [motof, setMotof] = useState([])
+  const [motof, setMotof] = useState([]);
 
   useEffect(() => {
     fetch(`${baseUrl}/favourites`, fetchConfig())
-    .then(res => {
-      if (res.ok) {
-        res.json().then(jsonRes => {
-          setMotof(jsonRes)
-          fetchFavourite(jsonRes)
-        });
-      }else{
-        fetchFavouriteFail('and error while fetch favourites')
-      }
-    }).catch((error)=> {
-      fetchFavouriteFail(error)
-    });
+      .then(res => {
+        if (res.ok) {
+          res.json().then(jsonRes => {
+            setMotof(jsonRes);
+            fetchFavourite(jsonRes);
+          });
+        } else {
+          fetchFavouriteFail('and error while fetch favourites');
+        }
+      }).catch(error => {
+        fetchFavouriteFail(error);
+      });
   }, []);
 
   const nextSlide = () => {
@@ -103,10 +102,9 @@ FavouriteSlider.propTypes = {
   }),
 };
 const mapDispatchToProps = dispatch => ({
-  fetchFavourite: (motoid) => dispatch(fetchFavourite(motoid)),
-  fetchFavouriteFail: (error) => dispatch(fetchFavouriteFail(error))
+  fetchFavourite: motoid => dispatch(fetchFavourite(motoid)),
+  fetchFavouriteFail: error => dispatch(fetchFavouriteFail(error)),
 });
-
 
 const mapStateToProps = state => ({
   motos: state.favourites,

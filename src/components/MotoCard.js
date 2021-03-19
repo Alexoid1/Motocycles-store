@@ -10,25 +10,24 @@ import {
 import './MotoCard.css';
 
 const MotoCard = ({
-  id, image, name, model
+  id, image, name, model, createFavourite,
 }) => {
   const rou = `/motorcycles/${id}`;
 
   const handleLike = () => {
-    
     fetch(`${baseUrl}/favourites`, {
       ...fetchConfig(),
       method: 'POST',
       body: JSON.stringify({
         motocycle_id: id,
-        
+
       }),
     })
       .then(res => {
         if (res.ok) {
-          createFavourite(true)
-        }else{
-          createFavourite(false)
+          createFavourite(true);
+        } else {
+          createFavourite(false);
         }
       });
   };
@@ -45,7 +44,7 @@ const MotoCard = ({
       </Link>
       <div className="iconsC">
         <div>
-          <button className="fa fa-thumbs-up" type="button" aria-hidden="true" onClick={handleLike} >click</button>
+          <button className="fa fa-thumbs-up" type="button" aria-hidden="true" onClick={handleLike}>click</button>
         </div>
       </div>
     </div>

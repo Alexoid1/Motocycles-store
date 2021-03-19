@@ -2,10 +2,16 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
-import { fetchUsers, createUsers } from '../actions/index';
+import fetchConfig from '../helpers/fetch';
+import baseUrl from '../helpers/base-url';
+import {
+  fetchUsers, createUsers, fetchUsersFail, createUsersFail,
+} from '../actions/index';
 import './LoginForm.css';
 
-const LoginForm = ({ fetchUsers, createUsers, users }) => {
+const LoginForm = ({
+  fetchUsers, createUsers, fetchUsersFail, createUsersFail, users,
+}) => {
   const [displays, setDisplays] = useState('inline-block');
   const [displays2, setDisplays2] = useState('none');
   const [email, setEmail] = useState(null);
@@ -15,26 +21,42 @@ const LoginForm = ({ fetchUsers, createUsers, users }) => {
   const [comp, setComp] = useState('');
   const history = useHistory();
 
-  if (users.login) {
-    history.push('/motorcycles');
-  }
-  console.log(users.token)
   const handleChangeDisplay = e => {
     e.preventDefault();
     setDisplays('none');
     setDisplays2('inline-block');
   };
+
+  const searchUserf = () => {
+    fetch(`${baseUrl}/login`, {
+      ...fetchConfig(),
+      method: 'POST',
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+    })
+      .then(res => {
+        if (res.ok) {
+          res.json().then(jsonRes => {
+            localStorage.setItem('motoToken', jsonRes.token);
+            history.push('/motorcycles');
+            fetchUsers(jsonRes);
+          });
+        } else {
+          setComp('User do not Exist');
+          fetchUsersFail('User do not Exist');
+        }
+      }).catch(error => {
+        fetchUsersFail(error);
+      });
+  };
+
   const handleSearchUserKeyDown = e => {
     if (e.keyCode === 13) {
       const reg = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
       if (reg.test(email)) {
-        fetchUsers(email, password);
-        if (users.error) {
-          setComp(users.error);
-          setTimeout(() => {
-            setComp('');
-          }, 10000);
-        }
+        searchUserf();
       } else {
         setComp('Write a email!');
 
@@ -45,17 +67,37 @@ const LoginForm = ({ fetchUsers, createUsers, users }) => {
     }
   };
 
+  const createUserf = () => {
+    fetch(`${baseUrl}/register`, {
+      ...fetchConfig(),
+      method: 'POST',
+      body: JSON.stringify({
+        name,
+        email,
+        password,
+      }),
+    })
+      .then(res => {
+        if (res.ok) {
+          res.json().then(jsonRes => {
+            localStorage.setItem('motoToken', jsonRes.token);
+            history.push('/motorcycles');
+            createUsers(jsonRes);
+          });
+        } else {
+          setComp('Wrong email!');
+          createUsersFail('Write a email!');
+        }
+      }).catch(error => {
+        createUsersFail(error);
+      });
+  };
+
   const handleSearchUser = e => {
     e.preventDefault();
     const reg = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
     if (reg.test(email)) {
-      fetchUsers(email, password);
-      if (users.error) {
-        setComp(users.error);
-        setTimeout(() => {
-          setComp('');
-        }, 10000);
-      }
+      searchUserf();
     } else {
       setComp('Write a email!');
 
@@ -65,10 +107,11 @@ const LoginForm = ({ fetchUsers, createUsers, users }) => {
     }
   };
 
-  const handleCreateUser = () => {
+  const handleCreateUser = e => {
+    e.preventDefault();
     const reg2 = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
     if (reg2.test(email)) {
-      createUsers(name, email, password);
+      createUserf();
       if (users.error) {
         setComp(users.error);
         setTimeout(() => {
@@ -139,7 +182,7 @@ const LoginForm = ({ fetchUsers, createUsers, users }) => {
           <br />
           <input className="inputEmail mail" type="password" placeholder="Write Your Password" onChange={handlePasswordChange} required />
           <br />
-          <button className="startBoton mail" type="submit" onClick={handleCreateUser}>Create</button>
+          <button className="startBoton mail" type="button" onClick={handleCreateUser}>Create</button>
           <button type="button" className="messagelink" onClick={handleChangeFormType}>Sing In</button>
         </form>
         <p className="messageAlert">{comp}</p>
@@ -167,6 +210,8 @@ const LoginForm = ({ fetchUsers, createUsers, users }) => {
 LoginForm.propTypes = {
   fetchUsers: PropTypes.func.isRequired,
   createUsers: PropTypes.func.isRequired,
+  fetchUsersFail: PropTypes.func.isRequired,
+  createUsersFail: PropTypes.func.isRequired,
   users: PropTypes.shape({
     user: PropTypes.shape({
       name: PropTypes.string.isRequired,
@@ -187,6 +232,8 @@ LoginForm.defaultProps = {
 const mapDispatchToProps = dispatch => ({
   fetchUsers: (email, password) => dispatch(fetchUsers(email, password)),
   createUsers: (name, email, password) => dispatch(createUsers(name, email, password)),
+  fetchUsersFail: error => dispatch(fetchUsersFail(error)),
+  createUsersFail: error => dispatch(createUsersFail(error)),
 });
 
 const mapStateToProps = state => ({

@@ -4,6 +4,12 @@
   width: 100%;
 }
 
+.motosComp {
+  display: flex;
+  flex-direction: row;
+  background: rgb(248, 248, 248);
+}
+
 .contCta {
   max-width: 350px;
   width: 70%;
@@ -45,6 +51,12 @@
 .butonTc {
   margin-top: 40px;
   text-align: center;
+}
+
+@media (max-width: 1050px) {
+  .motosComp {
+    display: block;
+  }
 }
 
 @media (max-width: 820px) {

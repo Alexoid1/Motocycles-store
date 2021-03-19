@@ -1,29 +1,21 @@
-import axios from 'axios';
-import fetchConfig from '../helpers/fetch';
 import baseUrl from '../helpers/base-url';
 
 import {
   FETCH_MOTOS_FAILURE,
   FETCH_MOTOS_SUCCESS,
   FETCH_BOOKMOTO_FAILURE,
-  FETCH_BOOKMOTO_REQUEST,
   FETCH_BOOKMOTO_SUCCESS,
-  CREATE_BOOKMOTO_FAILURE,
-  CREATE_BOOKMOTO_REQUEST,
   CREATE_BOOKMOTO_SUCCESS,
   FETCH_USERS_FAILURE,
   FETCH_USERS_SUCCESS,
   CREATE_USERS_FAILURE,
   CREATE_USERS_SUCCESS,
   LOGIN_USER,
-  LOGOUT_USER,
   FETCH_FAVOURITES_FAILURE,
   FETCH_FAVOURITES_SUCCESS,
   CREATE_FAVOURITE_SUCCESS,
 
 } from './types';
-
-
 
 const fetchMotosSuccess = motos => ({
   type: FETCH_MOTOS_SUCCESS,
@@ -33,10 +25,6 @@ const fetchMotosSuccess = motos => ({
 const fetchMotosFailure = error => ({
   type: FETCH_MOTOS_FAILURE,
   payload: error,
-});
-
-const fetchBookMotoRequest = () => ({
-  type: FETCH_BOOKMOTO_REQUEST,
 });
 
 const fetchBookMotoSuccess = bookmoto => ({
@@ -49,20 +37,10 @@ const fetchBookMotoFailure = error => ({
   payload: error,
 });
 
-const createBookMotoRequest = () => ({
-  type: CREATE_BOOKMOTO_REQUEST,
-});
-
 const createBookMotoSuccess = bookmoto => ({
   type: CREATE_BOOKMOTO_SUCCESS,
   payload: bookmoto,
 });
-
-const createBookMotoFailure = error => ({
-  type: CREATE_BOOKMOTO_FAILURE,
-  payload: error,
-});
-
 
 const fetchUsersSuccess = users => ({
   type: FETCH_USERS_SUCCESS,
@@ -73,8 +51,6 @@ const fetchUsersFailure = error => ({
   type: FETCH_USERS_FAILURE,
   payload: error,
 });
-
-
 
 export const createUsersSuccess = user => ({
   type: CREATE_USERS_SUCCESS,
@@ -89,11 +65,6 @@ const createUsersFailure = error => ({
 export const loginUser = () => ({
   type: LOGIN_USER,
 });
-
-export const logoutUser = () => ({
-  type: LOGOUT_USER,
-});
-
 
 export const fetchFavouritesSuccess = motos => ({
   type: FETCH_FAVOURITES_SUCCESS,
@@ -110,108 +81,47 @@ const createFavouriteSuccess = moto => ({
   payload: moto,
 });
 
-
 export const fetchMotos = () => dispatch => {
   fetch(`${baseUrl}/motocycles`)
     .then(res => {
       if (res.ok) {
         res.json().then(res => {
-         
           dispatch(fetchMotosSuccess(res));
         });
-      }else{
+      } else {
         fetchMotosFailure('error fetch motos');
       }
-    }).catch(function(error) {
-      dispatch(fetchMotosFailure(error))
-    })
-};
-
-export const fetchMotoBook = () => dispatch => {
-  dispatch(fetchBookMotoRequest);
-
-  axios.get('/tests', fetchConfig())
-    .then(response => {
-      const bookmotos = response.data;
-
-      dispatch(fetchBookMotoSuccess(bookmotos));
-    })
-    .catch(error => {
-      dispatch(fetchBookMotoFailure(error.message));
+    }).catch(error => {
+      dispatch(fetchMotosFailure(error));
     });
 };
 
-export const createMotoBook = (motoid, date, city) => dispatch => {
-  dispatch(createBookMotoRequest);
-  axios.post('/tests',
-    {
-      motocycle_id: motoid,
-      testDate: date,
-      city,
-    })
-    .then(response => {
-      const bookmotos = response.data;
-      dispatch(createBookMotoSuccess(bookmotos));
-    })
-    .catch(error => {
-      dispatch(createBookMotoFailure(error.message));
-    });
+export const fetchMotoBook = motosb => dispatch => {
+  dispatch(fetchBookMotoSuccess(motosb));
 };
 
-export const fetchUsers = (email, password) => dispatch => {
- 
-  fetch(`${baseUrl}/login`, {
-    ...fetchConfig(),
-    method: 'POST',
-    body: JSON.stringify({
-      email: email,
-      password: password
-      
-    }),
-  })
-    .then(res => {
-      if (res.ok) {
-        res.json().then(jsonRes => {
-          localStorage.setItem('motoToken', jsonRes.token);
-          dispatch(fetchUsersSuccess(jsonRes))
-        });
-        dispatch(loginUser());
-      } else {
-        dispatch(logoutUser());
-        dispatch(fetchUsersFailure('Wrong email or password'))
-      }
-      return res;
-    }).catch((error)=>{
-      fetchUsersFailure(error)
-    })
+export const fetchMotoBookFail = error => dispatch => {
+  dispatch(fetchBookMotoFailure(error));
 };
 
-export const createUsers = (name, email, password) => dispatch => {
-  fetch(`${baseUrl}/register`, {
-    ...fetchConfig(),
-    method: 'POST',
-    body: JSON.stringify({
-      name: name,
-      email: email,
-      password: password
-      
-    }),
-  })
-    .then(res => {
-      if (res.ok) {
-        res.json().then(jsonRes => {
-          localStorage.setItem('motoToken', jsonRes.token);
-          dispatch(createUsersSuccess(jsonRes))
-        });
-        dispatch(loginUser());
-      } else {
-        
-        dispatch(logoutUser());
-      }
-      return res;
-    }).catch((error)=>{
-      dispatch(createUsersFailure(error))
-    })
+export const createMotoBook = moto => dispatch => {
+  dispatch(createBookMotoSuccess(moto));
+};
+
+export const fetchUsers = user => dispatch => {
+  dispatch(fetchUsersSuccess(user));
+};
+
+export const fetchUsersFail = error => dispatch => {
+  dispatch(fetchUsersFailure(error));
+};
+
+export const createUsers = user => dispatch => {
+  dispatch(createUsersSuccess(user));
+};
+
+export const createUsersFail = error => dispatch => {
+  dispatch(createUsersFailure(error));
 };
 
 export const setUser = user => dispatch => {

@@ -5,8 +5,19 @@
   height: 100%;
 }
 
+.motosComp {
+  display: flex;
+  flex-direction: row;
+  background: rgb(248, 248, 248);
+}
+
+
 @media (max-width: 1050px) {
   .compCont3 {
     width: 100%;
+  }
+
+  .motosComp {
+    display: block;
   }
 }

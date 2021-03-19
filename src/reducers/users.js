@@ -4,7 +4,6 @@ import {
   CREATE_USERS_FAILURE,
   CREATE_USERS_SUCCESS,
   LOGIN_USER,
-  LOGOUT_USER,
 } from '../actions/types';
 
 const initialState = {
@@ -22,6 +21,7 @@ const usersReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
+        login: true,
         called: true,
         user: action.payload,
         token: action.payload.token,
@@ -38,6 +38,7 @@ const usersReducer = (state = initialState, action) => {
         ...state,
         loading: false,
         called: true,
+        login: true,
         user: action.payload,
         token: action.payload.token,
         error: '',
@@ -52,11 +53,6 @@ const usersReducer = (state = initialState, action) => {
       return {
         ...state,
         login: true,
-      };
-    case LOGOUT_USER:
-      return {
-        ...state,
-        login: false,
       };
     default:
       return state;

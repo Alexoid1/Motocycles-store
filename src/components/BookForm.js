@@ -69,17 +69,18 @@ const BookForm = ({ createMotoBook }) => {
       body: JSON.stringify({
         motocycle_id: id,
         testDate: selectedDate.toString(),
-        city: city
-        
+        city,
+
       }),
     })
       .then(res => {
         if (res.ok) {
-          console.log(res)
-          // dispatch(fetchFavouritesSuccess(res.json()))
-        } 
+          res.json().then(jsonRes => {
+            createMotoBook(jsonRes);
+          });
+        }
       });
-    
+
     history.push('/motorcycles');
   };
 

@@ -9,23 +9,27 @@ import './TestsContainer.css';
 
 import {
   fetchMotoBook,
+  fetchMotoBookFail,
 
 } from '../actions/index';
 
 const TestsContainer = ({
-  bookmoto, motos
+  bookmoto, motos, fetchMotoBook, fetchMotoBookFail,
 }) => {
-  const [bokmoto, setBokmoto] = useState([])
+  const [bokmoto, setBokmoto] = useState([]);
 
   useEffect(() => {
     fetch(`${baseUrl}/tests`, fetchConfig())
-    .then(res => {
-      if (res.ok) {
-        res.json().then(jsonRes => {
-          setBokmoto(jsonRes)
-        });
-      }
-    });
+      .then(res => {
+        if (res.ok) {
+          res.json().then(jsonRes => {
+            setBokmoto(jsonRes);
+            fetchMotoBook(jsonRes);
+          });
+        }
+      }).catch(error => {
+        fetchMotoBookFail(error);
+      });
   }, []);
 
   let comp2;
@@ -40,7 +44,6 @@ const TestsContainer = ({
   } else {
     comp2 = (
       <div className="testBoxCont">
-
         <div className="reverse">
           {
             bokmoto.map(book => (
@@ -54,7 +57,6 @@ const TestsContainer = ({
             ))
           }
         </div>
-
       </div>
     );
   }
@@ -72,7 +74,8 @@ TestsContainer.propTypes = {
 };
 
 const mapDispatchToProps = dispatch => ({
-  fetchMotoBook: () => dispatch(fetchMotoBook()),
+  fetchMotoBook: mot => dispatch(fetchMotoBook(mot)),
+  fetchMotoBookFail: error => dispatch(fetchMotoBookFail(error)),
 });
 
 const mapStateToProps = state => ({
