@@ -1,0 +1,65 @@
+.contTC {
+  background: url(../images/Ecosse-Spirit-ES11.png);
+  background-size: cover;
+}
+
+.contTest {
+  padding: 0;
+  margin: 0;
+  background: rgba(123, 190, 15, 0.8);
+  width: 100%;
+  height: 100%;
+}
+
+.formContainer h2 {
+  color: white;
+  font-family: 'Big Shoulders Stencil Text', cursive;
+  letter-spacing: 10px;
+  padding-bottom: 20px;
+  text-align: center;
+}
+
+.formContainer {
+  width: 700px;
+}
+
+.formContainer p {
+  color: white;
+  text-align: center;
+}
+
+.exitLink {
+  display: block;
+  float: left;
+  top: 0;
+  color: white;
+  font-size: 36px;
+  margin: 20px;
+  transition: ease-in-out 0.5s;
+}
+
+.exitLink:hover {
+  transform: scale(1.1);
+}
+
+.conForm {
+  width: 100%;
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 670px) {
+  .formContainer h2 {
+    font-size: 18px;
+  }
+
+  .formContainer p {
+    font-size: 14px;
+  }
+
+  .exitLink {
+    font-size: 25px;
+  }
+}

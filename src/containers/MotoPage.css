@@ -1,0 +1,90 @@
+.motopage {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.motosComp {
+  display: flex;
+  flex-direction: row;
+  background: rgb(248, 248, 248);
+}
+
+.contCta {
+  max-width: 350px;
+  width: 70%;
+  text-align: right;
+}
+
+.motoInfo p {
+  width: 100px;
+}
+
+.motoInfo {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.nonee {
+  display: none;
+}
+
+.butonTT {
+  background: rgb(151, 190, 15);
+  color: white;
+  width: 200px;
+  height: 40px;
+  font-size: 17px;
+  font-weight: bolder;
+  border: none;
+  border-radius: 50px;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  transition: ease-in-out 0.5s;
+}
+
+.butonTT:hover {
+  background: yellowgreen;
+  transform: scale(1.1);
+}
+
+.butonTc {
+  margin-top: 40px;
+  text-align: center;
+}
+
+@media (max-width: 1050px) {
+  .motosComp {
+    display: block;
+  }
+}
+
+@media (max-width: 820px) {
+  .motopage {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .nonee {
+    display: inline-block;
+    margin-right: 10px;
+  }
+
+  .tableCont {
+    text-align: center;
+    margin: auto;
+  }
+
+  .contCta {
+    max-width: 550px;
+    width: 100%;
+  }
+
+  .tableTitle {
+    text-align: center;
+  }
+
+  .butonTT {
+    width: 150px;
+  }
+}

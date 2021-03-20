@@ -1,0 +1,90 @@
+.butonLogin {
+  background: rgb(151, 190, 15);
+  color: white;
+  width: 100px;
+  height: 40px;
+  font-size: 17px;
+  font-weight: bolder;
+  border: none;
+  border-radius: 50px 0 0 50px;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  transition: ease-in-out 0.5s;
+}
+
+.butonChangeForm {
+  background: rgb(151, 190, 15);
+  color: white;
+  width: 40px;
+  height: 40px;
+  font-size: 17px;
+  font-weight: bolder;
+  border: none;
+  border-radius: 0 50px 50px 0;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  transition: ease-in-out 0.5s;
+}
+
+.startBoton {
+  background: rgb(151, 190, 15);
+  color: white;
+  width: 100px;
+  height: 35px;
+  font-size: 17px;
+  font-weight: bolder;
+  border: none;
+  border-radius: 50px;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  transition: ease-in-out 0.5s;
+}
+
+.mail {
+  margin: 10px;
+}
+
+.butonLogin:hover,
+.startBoton:hover,
+.butonChangeForm:hover {
+  background: yellowgreen;
+  transform: scale(1.1);
+}
+
+.loginTitle {
+  color: white;
+  font-family: 'Big Shoulders Stencil Text', cursive;
+  font-size: 50px;
+}
+
+.inputEmail {
+  background: none;
+  font-family: 'Big Shoulders Stencil Text', cursive;
+  height: 30px;
+  width: 130px;
+  font-size: 20px;
+  color: white;
+  border: none;
+}
+
+.inputEmail::placeholder {
+  color: white;
+}
+
+.messageAlert {
+  font-size: 18px;
+  font-weight: bold;
+  color: rgb(195, 13, 13);
+}
+
+.messagelink {
+  font-size: 14px;
+  font-weight: bold;
+  color: aqua;
+  cursor: pointer;
+  background: none;
+  border: none;
+  display: block;
+  margin: auto;
+}
+
+.messagelink:hover {
+  text-decoration: underline;
+}

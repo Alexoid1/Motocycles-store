@@ -1,0 +1,9 @@
+.errorPage {
+  text-align: center;
+  color: rgb(185, 24, 24);
+}
+
+.errorPage a:hover {
+  text-decoration: underline;
+  color: royalblue;
+}

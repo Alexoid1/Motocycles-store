@@ -1,0 +1,45 @@
+.imageI {
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  max-height: 600px;
+}
+
+.imageI img {
+  margin-top: 10px;
+  height: 350px;
+}
+
+.motoPageC {
+  width: 70%;
+}
+
+.dotContainer i {
+  margin: 0 20px;
+  color: grey;
+}
+
+.dotContainer i:hover {
+  color: rgb(151, 190, 15);
+}
+
+.anc {
+  background: rgb(151, 190, 15);
+}
+
+@media (max-width: 820px) {
+  .motoPageC {
+    width: 100%;
+  }
+
+  .imageI img {
+    margin-top: 10px;
+    height: 290px;
+  }
+
+  .disnone {
+    display: none;
+  }
+}

@@ -1,0 +1,108 @@
+.navBar {
+  width: 350px;
+  margin-left: 10px;
+  border-right: 1px solid rgb(231, 228, 228);
+}
+
+.navBar ul {
+  list-style: none;
+  margin: 75px 0;
+  padding: 0;
+}
+
+.navBar ul li {
+  text-align: center;
+  font-size: 18px;
+  height: 63px;
+  font-weight: bolder;
+  font-family: 'Roboto', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navBar ul li:hover {
+  background: rgb(151, 190, 15);
+  color: white;
+}
+
+.title2 {
+  color: black;
+  text-align: center;
+  font-family: 'Big Shoulders Stencil Text', cursive;
+  font-size: 50px;
+}
+
+nav {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.iconCont {
+  text-align: center;
+}
+
+.iconCont i {
+  margin: 10px;
+}
+
+.name {
+  text-align: center;
+}
+
+@media (max-width: 1050px) {
+  .navBar {
+    width: 100%;
+  }
+
+  .iconCont {
+    display: none;
+  }
+
+  .optionCont {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  nav {
+    height: 70px;
+  }
+
+  .optionCont ul {
+    display: flex;
+    flex-direction: row;
+    margin: 0 30px;
+  }
+
+  .optionCont ul a {
+    margin: 10px;
+  }
+
+  .title2 {
+    margin: 20px;
+    padding: 0;
+    font-size: 30px;
+  }
+}
+
+@media (max-width: 670px) {
+  .navBar ul li a {
+    font-size: 15px;
+  }
+
+  .title2 {
+    margin: 15px 0;
+    font-size: 24px;
+  }
+
+  .sele {
+    display: none;
+  }
+
+  .optionCont ul {
+    margin: auto;
+  }
+}

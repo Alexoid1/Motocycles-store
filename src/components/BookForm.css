@@ -1,0 +1,63 @@
+
+.selectFilter {
+  background: rgb(130, 161, 17);
+  color: white;
+  width: 200px;
+  height: 40px;
+  font-size: 17px;
+  font-weight: bolder;
+  border: none;
+  border-radius: 50px;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  transition: ease-in-out 0.5s;
+}
+
+.filter::placeholder {
+  color: white;
+  text-align: center;
+}
+
+.booknow {
+  background: white;
+  color: rgb(130, 161, 17);
+  width: 100px;
+  height: 40px;
+  font-size: 17px;
+  font-weight: bolder;
+  border: none;
+  border-radius: 50px;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  transition: ease-in-out 0.5s;
+}
+
+.booknow:hover {
+  transform: scale(1.1);
+}
+
+.formC {
+  text-align: center;
+}
+
+.formC input,
+.formC select {
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.btnCont {
+  margin: 20px auto;
+  text-align: center;
+}
+
+@media (max-width: 670px) {
+  form {
+    align-items: center;
+    margin: auto;
+    text-align: center;
+  }
+
+  .selectFilter {
+    display: inline-block;
+    margin: 10px auto;
+  }
+}
